@@ -1,0 +1,114 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../../resource.txt
+
+*** Test Case ***
+Test Case create Job Posting excedeed quota
+  Login with co trial member
+  Page Should Contain Element       css=.main
+  Click Element                     sizzle=.white-box--center a
+  Location Should Be                ${HOME URL}opportunities/new
+  Page Should Contain Element       css=.i-employer-opportunity-banner__overlay
+  Input Text                        forms_opportunity[job_position]                       Software Engineer
+  Select From List By Value         sizzle=\#forms_opportunity_location_id                10028
+  Click Element                     sizzle=.select2-choices:first
+  Click Element                     sizzle=.select2-drop-multi #select2-result-label-5
+  Click Element                     sizzle=.select2-choices:first
+  Click Element                     sizzle=.select2-drop-multi .select2-results li:nth(5)
+  Sleep       3
+  Input Text                        forms_opportunity[salary_lower]                       5000000
+  Input Text                        forms_opportunity[salary_upper]                       10000000
+  Select From List By Value         sizzle=\#forms_opportunity_job_function_id            31
+  Select From List By Value         sizzle=\#forms_opportunity_industry_id                6
+  Input Text                        forms_opportunity[responsibilities]                   Have knowledge about TDD, python, Ruby, etc
+  Input Text                        forms_opportunity[work_experience_in_years]           1
+  Select From List By Value         sizzle=\#forms_opportunity_degree_id                  3
+  Click Element                     sizzle=.select2-choices:last
+  Click Element                     sizzle=.select2-drop-multi:last .select2-results li:nth(31)
+  Click Element                     sizzle=.select2-choices:last
+  Click Element                  sizzle=.select2-drop-multi:last .select2-results li:nth(65)
+  Sleep       5
+  Input Text                        forms_opportunity[requirements]                       Ability to build scalable web apps and site with SDLC (System Development LiveCycle) best practice, Perform trouble-shooting to ensure stable, Can using SQL server reporting tool, SSRS
+  Click Element                     sizzle=\#opportunity_submit_action
+  Element Text Should Be            css=.alert                                            Maaf, anda tidak mempunyai keanggotaan. Silahkan hubungi customer service
+  Logout
+
+Test Case create Job Posting
+  Login with co member
+  Page Should Contain Element       css=.main
+  Click Element                     sizzle=.white-box--center a
+  Location Should Be                ${HOME URL}opportunities/new
+  Page Should Contain Element       css=.i-employer-opportunity-banner__overlay
+  Input Text                        forms_opportunity[job_position]                       Software Engineer
+  Select From List By Value         sizzle=\#forms_opportunity_location_id                10028
+  Click Element                     sizzle=.select2-choices:first
+  Click Element                     sizzle=.select2-drop-multi #select2-result-label-5
+  Click Element                     sizzle=.select2-choices:first
+  Click Element                     sizzle=.select2-drop-multi .select2-results li:nth(5)
+  #Select Checkbox                  sizzle=\#forms_opportunity_confidential
+  Input Text                        forms_opportunity[salary_lower]                       5000000
+  Input Text                        forms_opportunity[salary_upper]                       10000000
+  Select From List By Value         sizzle=\#forms_opportunity_job_function_id            31
+  Select From List By Value         sizzle=\#forms_opportunity_industry_id                6
+  Input Text                        forms_opportunity[responsibilities]                   Have knowledge about TDD, python, Ruby, etc
+  Input Text                        forms_opportunity[work_experience_in_years]           1
+  Select From List By Value         sizzle=\#forms_opportunity_degree_id                  3
+  Click Element                     sizzle=.select2-choices:last
+  Click Element                     sizzle=.select2-drop-multi:last .select2-results li:nth(31)
+  Click Element                     sizzle=.select2-choices:last
+  Click Element                     sizzle=.select2-drop-multi:last .select2-results li:nth(65)
+  Input Text                        forms_opportunity[requirements]                       Ability to build scalable web apps and site with SDLC (System Development LiveCycle) best practice, Perform trouble-shooting to ensure stable, Can using SQL server reporting tool, SSRS
+  Input Text                        forms_opportunity[email]                              qakmk14@gmail.com
+  Click Element                     sizzle=\#opportunity_submit_action
+  Location Should Be                ${HOME URL}companies/dashboard
+  Element Text Should Be            css=.notice                                           Selamat! Lowongan kerja Anda sudah tayang
+  Page Should Contain Element       sizzle=.b-opportunity-from-employer__header h3:first a    Software Engineer
+  Click Link                        sizzle=.b-opportunity-from-employer__header h3:first a
+  Location Should Contain           /opportunities
+  Element Text Should Be            sizzle=.b-stat:first .b-stat__header                  Jakarta
+  Element Text Should Be            sizzle=.b-stat:nth(4) .b-stat__header                 Setidaknya 1 tahun
+  Element Text Should Be            sizzle=.i-matte:nth(1) .b-markdown                    Have knowledge about TDD, python, Ruby, etc
+  Logout
+
+Test Case Edit Job Posting
+  Login with co member
+  Page Should Contain Element       css=.main
+  Click Element                     sizzle=.b-opportunity-from-employer__stats li:nth(2) a:first
+  Location Should Contain           /edit
+  Page Should Contain Element       css=.i-employer-opportunity-banner__overlay
+  Input Text                        forms_opportunity[job_position]                       Software Engineer Edit
+  Select From List By Value         sizzle=\#forms_opportunity_location_id                10027
+  Click Element                     sizzle=.select2-container .select2-choices:first .select2-search-choice:last a
+  Click Element                     sizzle=.select2-container .select2-choices:first .select2-search-choice a
+  Click Element                     sizzle=.select2-container .select2-choices:last .select2-search-choice:last a
+  Click Element                     sizzle=.select2-container .select2-choices:last .select2-search-choice a
+  Click Element                     sizzle=.select2-choices:first
+  Click Element                     sizzle=.select2-drop-multi #select2-result-label-5
+  Sleep     3
+  Click Element                     sizzle=.select2-choices:first
+  Click Element                     sizzle=.select2-drop-multi .select2-results li:nth(7)
+  #Select Checkbox                  sizzle=\#forms_opportunity_confidential
+  Input Text                        forms_opportunity[salary_lower]                       5000000
+  Input Text                        forms_opportunity[salary_upper]                       10000000
+  Select From List By Value         sizzle=\#forms_opportunity_job_function_id            31
+  Select From List By Value         sizzle=\#forms_opportunity_industry_id                6
+  Input Text                        forms_opportunity[responsibilities]                   Have knowledge about TDD, python, Ruby, etc
+  Input Text                        forms_opportunity[work_experience_in_years]           2
+  Select From List By Value         sizzle=\#forms_opportunity_degree_id                  3
+  Click Element                     sizzle=.select2-choices:last
+  Click Element                     sizzle=.select2-drop-multi:last .select2-results li:nth(31)
+  Click Element                     sizzle=.select2-choices:last
+  Click Element                     sizzle=.select2-drop-multi:last .select2-results li:nth(65)
+  Input Text                        forms_opportunity[requirements]                       Ability to build scalable web apps and site with SDLC (System Development LiveCycle) best practice, Perform trouble-shooting to ensure stable, Can using SQL server reporting tool, SSRS
+  Input Text                        forms_opportunity[email]                              qakmk14@gmail.com
+  Click Element                     sizzle=\#opportunity_submit_action
+  Location Should Be                ${HOME URL}companies/dashboard
+  Element Text Should Be            css=.notice                                           Lowongan kerja telah berhasil diperbaharui.
+  Sleep       3
+  Element Text Should Be            sizzle=.b-opportunity-from-employer__header h3:first a    Software Engineer Edit
+  Click Link                        sizzle=.b-opportunity-from-employer__header h3:first a
+  Location Should Contain           /opportunities
+  Element Text Should Be            sizzle=.b-stat:first .b-stat__header                  DKI-Jakarta
+  Element Text Should Be            sizzle=.b-stat:nth(4) .b-stat__header                 Setidaknya 2 tahun
+  Logout

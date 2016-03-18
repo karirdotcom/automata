@@ -1,0 +1,16 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Register
+  Sleep       1
+  Wait Until Element Is Visible    sizzle=.i-registration__overlay
+  Input Text                       forms_registration[first_name]        QA
+  Input Text                       forms_registration[last_name]         Regiter
+  Input Text                       name=forms_registration[email]        ${VALID USER}
+  Input Password                   name=forms_registration[password]     ${VALID PASSWORD}
+  Click Button                     Daftar
+  Location Should Be               ${HOME URL}users
+  Element Text Should Be           css=.error_explanation       Verifikasi gagal: Email sudah digunakan

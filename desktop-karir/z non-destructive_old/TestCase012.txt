@@ -1,0 +1,15 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Employers Landing Page
+  Click Link                      sizzle=.b-nav__mode__list:last a
+  Wait until Element Is Visible   sizzle=.b-employer-banner
+  Login with co nonmember
+  Sleep     3
+  Location Should Contain         ${HOME URL}companies/dashboard
+  Page Should Contain             Applicants
+  Sleep       3
+  Logout

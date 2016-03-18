@@ -1,0 +1,16 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Selected Location On Home Page
+  Scroll To Bottom Page
+  Wait Until Element Is Visible    sizzle=.row:nth(6) .b-discovery-card:nth(1)
+  Click Element                    sizzle=.row:nth(6) .b-discovery-card:nth(1) a
+  Location Should Contain          ${SERVER}/search?location_id=10030
+  Wait Until Element Is Visible    sizzle=.tdd-location .filter-title
+  Wait Until Element Is Visible    sizzle=.tdd-location .filter-filter option[value=10030]
+  Page Should Contain Element      sizzle=.opportunities-list .b--inline span:contains("Bandung")
+  Sleep       3
+  Go Back

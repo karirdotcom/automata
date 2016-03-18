@@ -1,0 +1,18 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Search Job On Homepage
+  Wait Until Element Is Visible    sizzle=.b-search__form--inline
+  Input Text                       name=q                           admin
+  Input Text                       name=location                    Jakarta
+  Click Button                     Cari
+  Location Should Contain          ${SERVER}/search?
+  Wait Until Element Is Visible    sizzle=.filters
+  Get Value                        sizzle=input[value\=admin]
+  Page Should Contain Element      sizzle=.opportunities-list .b--inline span:contains("Jakarta")
+  Click Element                    sizzle=.actions .load-more
+  Page Should Contain Element      sizzle=.opportunities-list .b--inline span:contains("Jakarta")
+  Go Back

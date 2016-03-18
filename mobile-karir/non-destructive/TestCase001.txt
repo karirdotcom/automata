@@ -1,0 +1,58 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Open HomePage
+  Open Browser        ${HOME URL}    ${BROWSER}
+  Location should be  ${HOME URL}
+
+Test Case Search Job On Homepage
+  Wait Until Element Is Visible    css=.bm-welcome-banner__search
+  Input Text                       q                           admin
+  Input Text                       location                    Jakarta
+  Click Button                     Search
+  Location Should Contain          ${HOME URL}search?q=admin&location=Jakarta
+  Textfield Value Should Be        q              admin
+  Page Should Contain Element      css=.tdd-function-name                        Admin
+  Page Should Contain Element      css=.opportunities-list                       Jakarta
+  Scroll To Bottom Page
+  Click Element                    css=.next-page
+  Location Should Contain          ${HOME URL}search?location=Jakarta&page=2&q=admin
+  Scroll To Bottom Page
+  Page Should Contain Element      css=.prev-page             Previous
+  Click Element                    css=.prev-page
+  Location Should Contain          ${HOME URL}search?location=Jakarta&page=1&q=admin
+  Click Element                    css=.bm-nav__logo
+  Page Should contain Element      css=.i-welcome-banner__bg
+
+Test Case Selected Industries On Home Page
+  Scroll Bottom
+  Wait Until Element Is Visible    css=.b-discovery-card__title
+  Click Element                    css=.b-discovery-card__title
+  Location Should Contain          ${SERVER}/search?industry_ids=52
+  Wait Until Element Is Visible    css=.opportunities-list
+  Click Element           	       css=.tdd-function-name
+  Location Should Contain          ${SERVER}/opportunities
+  Page Should Contain Element      css=.bm-opportunity-about-company__value     Consumer Goods
+  Click Element                    css=.bm-nav__logo
+  Page Should contain Element      css=.i-welcome-banner__bg
+
+Test Case Search By Location On Home Page
+  Scroll To Bottom Page
+  Click Element                    css=a[href="/search?location_id=10095"]
+  Location Should Contain          ${SERVER}/search?location_id=10095
+  Wait Until Element Is Visible    css=.opportunities-list
+  Page Should Contain Element      css=.b--inline                   Surabaya
+  Click Element           	       css=.tdd-function-name
+  Location Should Contain          ${SERVER}/opportunities
+  Sleep       3
+  Page Should Contain Element      css=.bm-opportunity-stat__value  Surabaya
+  Click Element                    css=.bm-nav__logo
+  Page Should contain Element      css=.i-welcome-banner__bg
+
+*** Keywords ***
+Scroll Bottom
+  Execute Javascript               window.scrollTo(0, 1000);
+  Sleep   1

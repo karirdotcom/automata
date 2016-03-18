@@ -1,0 +1,58 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+#Test All link on Burger menu
+Test Case Link Find Career
+  Wait Until Element Is Visible    css=.bm-nav-menu-button
+  Click Element                    css=.bm-nav-menu-button
+  Wait Until Element Is Visible    css=.slideout-menu
+  Sleep   3
+  Click Link                       sizzle=.slideout-menu li:first a
+  Location Should be               ${HOME URL}search
+  Input Text                       q        admin
+  Page Should Contain Element      css=.tdd-function-name        admin
+  Click Element                    css=.bm-nav__logo
+  Page Should contain Element      css=.i-welcome-banner__bg
+
+Test Case Link FAQ
+  Wait Until Element Is Visible    css=.bm-nav-menu-button
+  Click Element                    css=.bm-nav-menu-button
+  Wait Until Element Is Visible    css=.slideout-menu
+  Sleep     3
+  Click Link                       sizzle=.slideout-menu li:nth(2) a
+  Location Should be               ${HOME URL}info/faq-seeker
+  Go Back
+
+Test Case Link Advertise with Us
+  Wait Until Element Is Visible    css=.bm-nav-menu-button
+  Click Element                    css=.bm-nav-menu-button
+  Wait Until Element Is Visible    css=.slideout-menu
+  Sleep   3
+  Click Link                       sizzle=.slideout-menu li:nth(3) a
+  Location Should be               ${HOME URL}info/advertise
+  Go Back
+
+Test Case Link Contact
+  Wait Until Element Is Visible    css=.bm-nav-menu-button
+  Click Element                    css=.bm-nav-menu-button
+  Wait Until Element Is Visible    css=.slideout-menu
+  Sleep      3
+  Click Link                       sizzle=.slideout-menu li:nth(4) a
+  Location Should be               ${HOME URL}info/contact-us
+  Go Back
+
+Test Case Link Social Media
+  Wait Until Element Is Visible    css=.bm-nav-menu-button
+  Sleep     3
+  Click Element                    css=.bm-nav-menu-button
+  Wait Until Element Is Visible    css=.slideout-menu
+  Sleep      3
+  Click Link                       sizzle=.socmed:first
+  Sleep      3
+  Click Link                       sizzle=.socmed:nth(1)
+  Sleep      3
+  Click Link                       sizzle=.socmed:nth(2)
+  Go Back

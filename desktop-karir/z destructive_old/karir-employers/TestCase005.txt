@@ -1,0 +1,66 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Sort And Filter By All
+  Login with co member
+  Location Should Contain             ${HOME URL}companies/dashboard
+  Wait Until Element Is Visible       css=.opportunities
+  Click Link Search candidate
+  Location Should Be                  ${HOME URL}search/resumes
+  Wait Until Element Is Visible       css=.filters
+  Click Element                       sizzle=.tdd-job-functions
+  Wait Until Element Is Visible       sizzle=.tdd-job-functions .filter-filter
+  Select Checkbox                     sizzle=.tdd-job-functions .filter-filter li:first input[value=1]
+  Click Element                       sizzle=.tdd-job-functions .filter-title
+  Sleep       1
+  Wait Until Element Is Visible       sizzle=.tdd-major
+  Click Element                       sizzle=.tdd-major a
+  Click Element                       sizzle=.tdd-major .filter-filter
+  Click Element                       sizzle=.tdd-major .filter-filter input[value=6]
+  Click Element                       sizzle=.tdd-major .filter-filter input[value=17]
+  Sleep       4
+  Wait Until Element Is Visible       sizzle=.tdd-location
+  Click Element                       sizzle=.tdd-location a
+  Click Element                       sizzle=.tdd-location .filter-filter
+  Click Element                       sizzle=.tdd-location .filter-filter optgroup:nth(8) option[value=10028]
+  Click Element                       sizzle=.tdd-location a
+  Sleep       1
+  Wait Until Element Is Visible       sizzle=.tdd-career-level
+  Click Element                       sizzle=.tdd-career-level a
+  Click Element                       sizzle=.tdd-career-level .filter-filter
+  Click Element                       sizzle=.tdd-career-level .filter-filter option[value=7]
+  Click Element                       sizzle=.tdd-career-level a
+  Sleep       1
+  Wait Until Element Is Visible       sizzle=.tdd-industry
+  Click Element                       sizzle=.tdd-industry a
+  Select Checkbox                     sizzle=.tdd-industry .filter-filter input[value=11]
+  Click Element                       sizzle=.tdd-industry a
+  Sleep       1
+  Wait Until Element Is Visible       sizzle=.tdd-education
+  Click Element                       sizzle=.tdd-education a
+  Click Element                       sizzle=.tdd-education .filter-filter
+  Click Element                       sizzle=.tdd-education .filter-filter option[value=3]
+  Sleep       3
+  Wait Until Element Is Visible       sizzle=.tdd-gender
+  Click Element                       sizzle=.tdd-gender a
+  Click element                       sizzle=.tdd-gender .filter-filter
+  Click Element                       sizzle=.tdd-gender .filter-filter option[value=2]
+  Click Element                       sizzle=.tdd-gender a
+  Sleep       3
+  Page Should Contain Element         sizzle=.resumes-list h3                   Admin
+  Page Should Contain Element         sizzle=.resumes-list .b--inline           Jakarta
+  Page Should Contain Element         sizzle=.resumes-list h3                   Manajer - Departemen
+  Page Should Contain Element         sizzle=.resumes-list h3                   Bank
+  sleep       25
+  Click Element                       sizzle=.resumes-list .tdd-fullname:first
+  Location Should Contain             ${HOME URL}users/
+  Wait Until Element Is Visible       sizzle=.b-profile-card
+  Sleep       1
+  Page Should Contain Element         css=.main       Admin
+  Element Text Should Be              sizzle=.education-show h6:first span      Sarjana/S1 in Ilmu Komputer
+  Element Text Should Be              sizzle=.details .gender                   Wanita
+
+  Logout

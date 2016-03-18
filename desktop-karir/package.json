@@ -1,0 +1,13 @@
+{
+  "name": "automata-karir-visual",
+  "license": "MIT",
+  "engines": {
+    "node": "0.10.36",
+    "npm":  "2.3.0"
+  },
+  "dependencies": {
+    "phantomcss":   "0.10.1",
+    "underscore":   "*"
+  },
+  "scripts": { }
+}

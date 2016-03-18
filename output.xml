@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20160218 15:29:46.216" generator="Robot 3.0 (Python 2.7.6 on linux2)">
+<suite source="/home/karir/WorkSpace/automata/Karir/karir/non_destructive/welcome_page.txt" id="s1" name="Welcome Page">
+<kw type="setup" name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${HOME URL}</arg>
+<arg>${BROWSER}</arg>
+</arguments>
+<msg timestamp="20160218 15:29:46.379" level="INFO">Opening browser 'Chrome' to base url 'https://www.karir.com/'</msg>
+<status status="PASS" endtime="20160218 15:29:49.645" starttime="20160218 15:29:46.379"></status>
+</kw>
+<test id="s1-t1" name="Test redesign hompage search box and top page">
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>jquery=.b-search__input__q</arg>
+</arguments>
+<status status="PASS" endtime="20160218 15:29:49.660" starttime="20160218 15:29:49.646"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>jquery=.b-nav__mode .b-nav__mode__list:nth(4)</arg>
+</arguments>
+<status status="PASS" endtime="20160218 15:29:49.676" starttime="20160218 15:29:49.660"></status>
+</kw>
+<status status="PASS" endtime="20160218 15:29:49.676" critical="yes" starttime="20160218 15:29:49.645"></status>
+</test>
+<test id="s1-t2" name="Test redesign hompage latest Job">
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>jquery=#tab_latest</arg>
+</arguments>
+<status status="PASS" endtime="20160218 15:29:49.687" starttime="20160218 15:29:49.677"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>jquery=#tab_latest</arg>
+</arguments>
+<msg timestamp="20160218 15:29:49.687" level="INFO">Clicking element 'jquery=#tab_latest'.</msg>
+<status status="PASS" endtime="20160218 15:29:49.721" starttime="20160218 15:29:49.687"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>jquery=#opportunities_latest</arg>
+</arguments>
+<status status="PASS" endtime="20160218 15:29:49.735" starttime="20160218 15:29:49.721"></status>
+</kw>
+<kw name="Wait For Condition" library="Selenium2Library">
+<doc>Waits until the given `condition` is true or `timeout` expires.</doc>
+<arguments>
+<arg>return document.querySelectorAll("#opportunities_latest .b-welcome-content__opportunities__item").length == 6</arg>
+</arguments>
+<status status="PASS" endtime="20160218 15:29:49.737" starttime="20160218 15:29:49.735"></status>
+</kw>
+<status status="PASS" endtime="20160218 15:29:49.738" critical="yes" starttime="20160218 15:29:49.676"></status>
+</test>
+<test id="s1-t3" name="Test redesign hompage popular job">
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>jquery=#tab_popular</arg>
+</arguments>
+<status status="PASS" endtime="20160218 15:29:49.749" starttime="20160218 15:29:49.738"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>jquery=#tab_popular</arg>
+</arguments>
+<msg timestamp="20160218 15:29:49.750" level="INFO">Clicking element 'jquery=#tab_popular'.</msg>
+<status status="PASS" endtime="20160218 15:29:49.776" starttime="20160218 15:29:49.749"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>jquery=#opportunities_popular</arg>
+</arguments>
+<status status="PASS" endtime="20160218 15:29:49.793" starttime="20160218 15:29:49.776"></status>
+</kw>
+<kw name="Wait For Condition" library="Selenium2Library">
+<doc>Waits until the given `condition` is true or `timeout` expires.</doc>
+<arguments>
+<arg>return document.querySelectorAll("#opportunities_popular .b-welcome-content__opportunities__item").length == 6</arg>
+</arguments>
+<status status="PASS" endtime="20160218 15:29:49.796" starttime="20160218 15:29:49.793"></status>
+</kw>
+<status status="PASS" endtime="20160218 15:29:49.796" critical="yes" starttime="20160218 15:29:49.738"></status>
+</test>
+<test id="s1-t4" name="Test redesign hompage side bar popular industry">
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>jquery=.b-matte-rounded__content:nth(1)</arg>
+</arguments>
+<status status="PASS" endtime="20160218 15:29:49.807" starttime="20160218 15:29:49.796"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>jquery=.b-matte-rounded__content:nth(1) li:first a</arg>
+</arguments>
+<msg timestamp="20160218 15:29:49.807" level="INFO">Clicking element 'jquery=.b-matte-rounded__content:nth(1) li:first a'.</msg>
+<status status="PASS" endtime="20160218 15:29:50.539" starttime="20160218 15:29:49.807"></status>
+</kw>
+<kw name="Location Should Contain" library="Selenium2Library">
+<doc>Verifies that current URL contains `expected`.</doc>
+<arguments>
+<arg>${HOME URL}search?industry_ids=4</arg>
+</arguments>
+<msg timestamp="20160218 15:29:50.543" level="INFO">Current location contains 'https://www.karir.com/search?industry_ids=4'.</msg>
+<status status="PASS" endtime="20160218 15:29:50.543" starttime="20160218 15:29:50.539"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>jquery=.filters</arg>
+</arguments>
+<status status="PASS" endtime="20160218 15:29:50.554" starttime="20160218 15:29:50.543"></status>
+</kw>
+<kw name="Checkbox Should Be Selected" library="Selenium2Library">
+<doc>Verifies checkbox identified by `locator` is selected/checked.</doc>
+<arguments>
+<arg>jquery=.tdd-industries li input[value=4]</arg>
+</arguments>
+<msg timestamp="20160218 15:29:50.555" level="INFO">Verifying checkbox 'jquery=.tdd-industries li input[value=4]' is selected.</msg>
+<status status="PASS" endtime="20160218 15:29:50.567" starttime="20160218 15:29:50.555"></status>
+</kw>
+<kw name="Go Back" library="Selenium2Library">
+<doc>Simulates the user clicking the "back" button on their browser.</doc>
+<status status="PASS" endtime="20160218 15:29:50.787" starttime="20160218 15:29:50.567"></status>
+</kw>
+<status status="PASS" endtime="20160218 15:29:50.787" critical="yes" starttime="20160218 15:29:49.796"></status>
+</test>
+<test id="s1-t5" name="Test redesign homepage side bar popular cities">
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>jquery=.b-matte-rounded__content:nth(2)</arg>
+</arguments>
+<status status="PASS" endtime="20160218 15:29:50.811" starttime="20160218 15:29:50.788"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>jquery=.b-matte-rounded__content:nth(2) li:first a</arg>
+</arguments>
+<msg timestamp="20160218 15:29:50.812" level="INFO">Clicking element 'jquery=.b-matte-rounded__content:nth(2) li:first a'.</msg>
+<status status="PASS" endtime="20160218 15:29:52.959" starttime="20160218 15:29:50.811"></status>
+</kw>
+<kw name="Location Should Contain" library="Selenium2Library">
+<doc>Verifies that current URL contains `expected`.</doc>
+<arguments>
+<arg>${HOME URL}cities/bandung</arg>
+</arguments>
+<msg timestamp="20160218 15:29:52.963" level="INFO">Current location contains 'https://www.karir.com/cities/bandung'.</msg>
+<status status="PASS" endtime="20160218 15:29:52.963" starttime="20160218 15:29:52.960"></status>
+</kw>
+<status status="PASS" endtime="20160218 15:29:52.963" critical="yes" starttime="20160218 15:29:50.788"></status>
+</test>
+<kw type="teardown" name="Close Browser" library="Selenium2Library">
+<doc>Closes the current browser.</doc>
+<status status="PASS" endtime="20160218 15:29:53.017" starttime="20160218 15:29:52.964"></status>
+</kw>
+<status status="PASS" endtime="20160218 15:29:53.017" starttime="20160218 15:29:46.216"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="5">Critical Tests</stat>
+<stat fail="0" pass="5">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Welcome Page" pass="5">Welcome Page</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -1,0 +1,164 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Search By Keywords
+  Login with co member
+  Location Should Contain             ${HOME URL}companies/dashboard
+  Wait Until Element Is Visible       css=.opportunities
+  Click Link Search candidate
+  Wait Until Element Is Visible       css=.filters
+  Input Text                          q           kmk
+  Page Should Contain Element         sizzle=.resumes-list a h2       KMK
+  Page Should Contain Element         sizzle=.resumes-list h3         KMK
+  Click Element                       sizzle=.resumes-list .resume:nth(1) a:last
+  Location Should Contain             ${HOME URL}users/
+  Wait Until Element Is Visible       sizzle=.b-profile-card
+  Logout
+  Sleep     3
+
+Test Case Filter By Job Functions
+  Login with co member
+  Location Should Contain             ${HOME URL}companies/dashboard
+  Wait Until Element Is Visible       css=.opportunities
+  Click Link Search candidate
+  Wait Until Element Is Visible       css=.filters
+  Click Element                       sizzle=.tdd-job-functions
+  Wait Until Element Is Visible       sizzle=.tdd-job-functions .filter-filter
+  Select Checkbox                     sizzle=.tdd-job-functions .filter-filter li:first input[value=1]
+  Sleep         10
+  Page Should Contain Element         sizzle=.resumes-list h3         Admin
+  Click Element                       sizzle=.resumes-list .resume:first a:first .tdd-fullname
+  Location Should Contain             ${HOME URL}users/
+  Wait Until Element Is Visible       sizzle=.b-profile-card
+  Page Should Contain                 Admin
+  Sleep     10
+  Logout
+  Sleep     3
+
+Test Case Filter By Locations
+  Login with co member
+  Location Should Contain             ${HOME URL}companies/dashboard
+  Wait Until Element Is Visible       css=.opportunities
+  Click Link Search candidate
+  Location Should Be                  ${HOME URL}search/resumes
+  Wait Until Element Is Visible       sizzle=.tdd-location
+  Click Element                       sizzle=.tdd-location a
+  Click Element                       sizzle=.tdd-location .filter-filter
+  Click Element                       sizzle=.tdd-location .filter-filter optgroup:first option[value=10030]
+  Page Should Contain Element         sizzle=.resumes-list .resume .b--inline span                 Bandung
+  Click Element                       sizzle=.actions .load-more
+  Scroll To Bottom Page
+  Page Should Contain Element         sizzle=.resumes-list .resume .b--inline span                 Bandung
+  Sleep         3
+  Logout
+  Sleep     3
+
+Test Case Filter By Career Level
+  Login with co member
+  Location Should Contain             ${HOME URL}companies/dashboard
+  Wait Until Element Is Visible       css=.opportunities
+  Click Link Search candidate
+  Location Should Be                  ${HOME URL}search/resumes
+  Wait Until Element Is Visible       sizzle=.tdd-career-level
+  Click Element                       sizzle=.tdd-career-level a
+  Click Element                       sizzle=.tdd-career-level .filter-filter
+  Click Element                       sizzle=.tdd-career-level .filter-filter option[value=7]
+  Page Should Contain                 Manajer - Departemen
+  Sleep         3
+  Logout
+  Sleep     3
+
+Test Case Filter By Industries
+  Login with co member
+  Location Should Contain             ${HOME URL}companies/dashboard
+  Wait Until Element Is Visible       css=.opportunities
+  Click Link Search candidate
+  Location Should Be                  ${HOME URL}search/resumes
+  Wait Until Element Is Visible       sizzle=.tdd-industry
+  Click Element                       sizzle=.tdd-industry a
+  Select Checkbox                     sizzle=.tdd-industry .filter-filter input[value=6]
+  Sleep       3
+  #Page Should Contain                Quality Assurance
+  Page Should Contain                 Komputer / TI
+  Sleep     3
+  Logout
+  Sleep     3
+
+Test Case Filter By Education Level
+  Login with co member
+  Location Should Contain             ${HOME URL}companies/dashboard
+  Wait Until Element Is Visible       css=.opportunities
+  Click Link Search candidate
+  Location Should Be                  ${HOME URL}search/resumes
+  Wait Until Element Is Visible       sizzle=.tdd-education
+  Click Element                       sizzle=.tdd-education a
+  Click Element                       sizzle=.tdd-education .filter-filter
+  Click Element                       sizzle=.tdd-education .filter-filter option[value=3]
+  Sleep       3
+  Click Element                       sizzle=.resumes-list .resume h2:nth(2)
+  Location Should Contain             ${HOME URL}users
+  Page Should Contain Element         sizzle=.education-show span                 Sarjana/S1
+  Sleep     3
+  Logout
+  Sleep     3
+
+Test Case Filter By Education Major
+  Login with co member
+  Location Should Contain             ${HOME URL}companies/dashboard
+  Wait Until Element Is Visible       css=.opportunities
+  Click Link Search candidate
+  Location Should Be                  ${HOME URL}search/resumes
+  Wait Until Element Is Visible       sizzle=.tdd-major
+  Click Element                       sizzle=.tdd-major a
+  Click Element                       sizzle=.tdd-major .filter-filter
+  Click Element                       sizzle=.tdd-major .filter-filter input[value=6]
+  Click Element                       sizzle=.tdd-major .filter-filter input[value=17]
+  Sleep       3
+  Click Element                       sizzle=.resumes-list .resume h2:nth(2)
+  Location Should Contain             ${HOME URL}users
+  Page Should Contain Element         sizzle=.education-show span            Ilmu Komputer
+  Sleep     3
+  Logout
+  Sleep     3
+
+Test Case Filter By Age
+  Login with co member
+  Location Should Contain             ${HOME URL}companies/dashboard
+  Wait Until Element Is Visible       css=.opportunities
+  Click Link Search candidate
+  Location Should Be                  ${HOME URL}search/resumes
+  Input Text                          q         KMK
+  Wait Until Element Is Visible       sizzle=.tdd-age
+  Click Element                       sizzle=.tdd-age a
+  Input Text                          min_age       25
+  Input Text                          max_age       26
+  Sleep       3
+  Click Element                       sizzle=.resumes-list .resume h2:first
+  Location Should Contain             ${HOME URL}users
+  Page Should Contain Element         sizzle=.details .birth    1990
+  Page Should Contain Element         sizzle=.details .birth    1989
+  Sleep     3
+  Logout
+  Sleep     3
+
+Test Case Filter By Gender
+  Login with co member
+  Location Should Contain             ${HOME URL}companies/dashboard
+  Wait Until Element Is Visible       css=.opportunities
+  Click Link Search candidate
+  Location Should Be                  ${HOME URL}search/resumes
+  Input Text                          q         KMK
+  Wait Until Element Is Visible       sizzle=.tdd-gender
+  Click Element                       sizzle=.tdd-gender a
+  Click element                       sizzle=.tdd-gender .filter-filter
+  Click Element                       sizzle=.tdd-gender .filter-filter option[value=2]
+  Sleep       3
+  Click Element                       sizzle=.resumes-list .resume h2:first
+  Location Should Contain             ${HOME URL}users
+  Page Should Contain Element         sizzle=.details .gender                 Wanita
+  Sleep     20
+  Logout
+  Sleep     3

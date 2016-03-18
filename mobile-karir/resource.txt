@@ -1,0 +1,118 @@
+*** Settings ***
+Documentation     A resource for global
+Library           Selenium2Library      15
+Library           String
+Library           Dialogs
+Library           FakerLibrary
+
+*** Variable ***
+${SERVER}           m.staging.karir.com
+${DesktopSERVER}    www.staging.karir.com
+${BROWSER}          Chrome
+${DELAY}            0
+${VALID USER}       qa@example.com
+${VALID PASSWORD}   nyiROROkidul:)
+${LOGIN URL}        https://${SERVER}/users/sign_in
+${HOME URL}         https://${SERVER}/
+
+*** Keywords ***
+Open Browser To Login Page
+  Open Browser              ${LOGIN URL}    ${BROWSER}
+  Maximize Browser Window
+  Set Selenium Speed        ${DELAY}
+  Login Page Should Be Open
+
+Login Page Should Be Open
+  Location Should Be        ${LOGIN URL}
+
+Home Page Should Be Open
+  Location Should Be        ${HOME URL}
+
+Go To Login Page
+  Go To                     ${LOGIN URL}
+  Login Page Should Be Open
+
+Elements Should Be Equal
+  [Arguments]         ${query}                ${count}
+  ${elements}=        Execute Javascript      return document.querySelectorAll("${query}").length;
+  Should Be True      ${elements} == ${count}
+
+
+Elements Should More Than Or Equal
+  [Arguments]         ${query}                ${count}
+  ${elements}=        Execute Javascript      return document.querySelectorAll("${query}").length;
+  Should Be True      ${elements} >= ${count}
+
+Scroll To Top Page
+  Execute Javascript  window.scrollTo(0, 0);
+
+Scroll To Bottom Page
+  Execute Javascript               window.scrollTo(0, document.body.scrollHeight);
+  Sleep                            1
+
+Login
+  Input Text          user[email]           ${VALID USER}
+  Input Password      user[password]        ${VALID PASSWORD}
+  Click Button        commit
+
+Delete User
+  [Arguments]             ${email}
+  Login With admin
+  Go To                   https://www.${SERVER}/admin/users
+  Input Text              q[email_cont]                     ${email}
+  Click Button            Filter
+  Table Should Contain    sizzle=.col.col-email:nth(1)      ${email}
+  Click Element           sizzle=.delete_link.member_link:first
+  Confirm Action
+  Wait Until Element Is Visible   sizzle=.flash.flash_notice
+  Element Should Contain          sizzle=.flash.flash_notice        User was successfully destroyed.
+  Click Element           sizzle=\#logout a
+
+Logout
+  Wait Until Element Is Visible     css=.tdd-sign-out
+  Click Element                     css=.tdd-sign-out
+  Sleep   3
+
+Go To Employers Landing Page
+  Click Element                     sizzle=.b-nav__mode__link:last
+  Wait Until Element Is Visible     sizzle=.b-employer-banner__call-to-action
+
+Login with seeker
+  Go To Login Page
+  Input Text          user[email]           qakarirbumi@hotmail.com
+  Input Password      user[password]        passwordHotmail:)
+  Click Button        commit
+
+Login with seeker with no complete resume
+  Go To Login Page
+  Input Text          user[email]           qakarirbumi@yahoo.com
+  Input Password      user[password]        qaBumi10:)
+  Click Button        commit
+
+Login with seeker before take salary
+  Go To Login Page
+  Input Text          user[email]           qakarirbumi@gmail.com
+  Input Password      user[password]        qaGmail10:)
+  Click Button        commit
+
+Login with co member
+  Go To Login Page
+  Input Text          user[email]           hrd@karir.com
+  Input Password      user[password]        Employer
+  Click Button        commit
+
+Login with co trial member
+  Go To Login Page
+  Input Text          user[email]           qakarirdotcom@gmail.com
+  Input Password      user[password]        passwordGmail:)
+  Click Button        commit
+
+Login with co nonmember
+  Go To Login Page
+  Input Text          user[email]           kmk@karir.com
+  Input Password      user[password]        kmk01
+  Click Button        commit
+
+Click Link Search candidate
+  Click Element                       sizzle=.b-nav__mode__link:first
+  Location Should Contain             ${HOME URL}search/resumes

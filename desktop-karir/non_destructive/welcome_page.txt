@@ -1,0 +1,35 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test redesign hompage search box and top page
+  Wait Until Element Is Visible               jquery=.b-search__input__q
+  Wait Until Element Is Visible               jquery=.b-nav__mode .b-nav__mode__list:nth(4)
+
+Test redesign hompage latest Job
+  Wait Until Element Is Visible               jquery=#tab_latest
+  Click Element                               jquery=#tab_latest
+  Wait Until Element Is Visible               jquery=#opportunities_latest
+  Wait For Condition                          return document.querySelectorAll("#opportunities_latest .b-welcome-content__opportunities__item").length == 6
+
+Test redesign hompage popular job
+  Wait Until Element Is Visible               jquery=#tab_popular
+  Click Element                               jquery=#tab_popular
+  Wait Until Element Is Visible               jquery=#opportunities_popular
+  Wait For Condition                          return document.querySelectorAll("#opportunities_popular .b-welcome-content__opportunities__item").length == 6
+
+Test redesign hompage side bar popular industry
+  Wait Until Element Is Visible               jquery=.b-matte-rounded__content:nth(1)
+  Click Element                               jquery=.b-matte-rounded__content:nth(1) li:first a
+  Location Should Contain                     ${HOME URL}search?industry_ids=4
+  Wait Until Element Is Visible               jquery=.filters
+  Checkbox Should Be Selected                 jquery=.tdd-industries li input[value=4]
+  Go Back 
+
+Test redesign homepage side bar popular cities
+  Wait Until Element Is Visible               jquery=.b-matte-rounded__content:nth(2)
+  Click Element                               jquery=.b-matte-rounded__content:nth(2) li:first a
+  Location Should Contain                     ${HOME URL}cities/bandung
+

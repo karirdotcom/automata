@@ -1,0 +1,8 @@
+*** Settings ***
+Suite Teardown          Close Browser
+Resource                ../resource.txt
+
+*** Test Case ***
+Test Case Open HomePage
+  Open Browser        ${HOME URL}    ${BROWSER}
+  Location should be  ${HOME URL}

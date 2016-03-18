@@ -1,0 +1,42 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Edit Personal Data
+  Login with seeker
+  Wait Until Element Is Visible         sizzle=.b-matte__header:first .fa-pencil
+  Click Element                         sizzle=.b-matte__header:first .fa-pencil
+  Wait Until Element Is Visible         sizzle=.b-matte__content--edit
+  Input Text                            sizzle=.details textarea                SCTV Tower Senayan City Jl. Asia Afrika Lot 19 Jakarta
+  Click Element                         sizzle=.details .location
+  Click Element                         sizzle=.location option[value=10028]
+  Input Text                            sizzle=.details li input[type=text]       10270
+  Input Text                            sizzle=.details li:nth(3) input[type=text]    kmkonline.com
+  Input Text                            sizzle=.details li:nth(4) input[type=text]    021-7229690
+  Input Text                            sizzle=.details li:nth(5) input[type=text]    021-7229690
+  Input Text                            sizzle=.details li:nth(6) input[type=text]    08123456789
+  Input Text                            sizzle=.details li:nth(7) input[type=text]    QA
+  Input Text                            sizzle=.details li:nth(8) input[type=text]    KMK
+  Input Text                            sizzle=.details li:nth(9) input[type=text]    Online
+  Click Element                         sizzle=.details li:nth(10)
+  Click Element                         sizzle=.details li:nth(10) option[value=2]
+  Click Element                         sizzle=.details li:nth(12)
+  Click Element                         sizzle=.details li:nth(12) option[value=1989]
+  Click Element                         sizzle=.details li:nth(13)
+  Click Element                         sizzle=.details li:nth(13) option[value=4]
+  Click Element                         sizzle=.details li:nth(14)
+  Click Element                         sizzle=.details li:nth(14) option[value=8]
+  Click Element                         sizzle=.details li:nth(15)
+  Click Element                         sizzle=.details li:nth(15) option[value=1]
+  Click Element                         sizzle=.details li:nth(16)
+  Click Element                         sizzle=.details li:nth(16) option[value=Indonesia]
+  Choose File                           sizzle=.details li:nth(18) input[type=file]       /home/woi/Workspace/automata/vidio/destructive/media-upload/thumbnail_automata.jpg
+  Click Button                          Save
+  Sleep     1
+  Page Should Not Contain Element       sizzle=.b-matte__content--edit
+  Element Text Should Be                css=.address              SCTV Tower Senayan City Jl. Asia Afrika Lot 19 Jakarta
+  Sleep       3
+  Logout
+  Sleep       3

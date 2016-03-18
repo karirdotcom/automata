@@ -1,0 +1,93 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Link FAQ Career Seeker On Footer
+  Scroll To Bottom Page
+  Click Link                          css=.tdd-faq-seeker
+  Location Should Be                  ${HOME URL}info/faq-seeker
+  Wait Until Element Is Visible       css=.main
+  Page Should Contain Element         css=.main         Career Seeker Frequently Asked Questions
+  Wait For Condition                  return document.querySelectorAll(".b-matte").length == 8
+  Go Back
+
+Test Case Link Register Employers On Footer
+  Scroll To Bottom Page
+  Wait Until Element Is Visible       sizzle=.footer-links ul:nth(2) a:first
+  Click Element                       sizzle=.footer-links ul:nth(2) a:first
+  Location Should Contain             ${HOME URL}users/sign_up
+
+Test Case Link FAQ Employers On Footer
+  Scroll To Bottom Page
+  Wait Until Element Is Visible       sizzle=.tdd-faq-employer
+  Click Element                       sizzle=.tdd-faq-employer
+  Location Should Be                  ${HOME URL}info/faq-employer
+  Wait Until Element Is Visible       css=.main
+  Page Should Contain Element         css=.main         Employer Frequently Asked Questions
+  Wait For Condition                  return document.querySelectorAll(".b-matte").length == 6
+  Go Back
+
+Test Case Link Blog
+  Scroll To Bottom Page
+  Click Link                          css=.tdd-blog
+  Location Should Be                  http://blog.karir.com/
+  Go Back
+
+Test Case Link Advertise With Us Company On Footer
+  Scroll To Bottom Page
+  Wait Until Element Is Visible       sizzle=.tdd-advertising
+  Click Element                       sizzle=.tdd-advertising
+  Location Should Be                  ${HOME URL}info/advertise
+  Wait Until Element Is Visible       css=.main
+  Page Should Contain Element         css=.main       Advertise With Us
+  Wait For Condition                  return document.querySelectorAll(".b-matte").length == 2
+
+Test Case Link Contact Company On Footer
+  Scroll To Bottom Page
+  Wait Until Element Is Visible       sizzle=.tdd-contact-us
+  Click Element                       sizzle=.tdd-contact-us
+  Location Should Be                  ${HOME URL}info/contact-us
+  Wait Until Element Is Visible       css=.main
+  Page Should Contain Element         css=.main       Contact Us
+  Wait For Condition                  return document.querySelectorAll(".b-matte").length == 2
+
+Test Case Link Privacy Policy On Footer
+  Scroll To Bottom Page
+  Wait Until Element Is Visible       sizzle=.tdd-privacy-policy
+  Click Element                       sizzle=.tdd-privacy-policy
+  Location Should Be                  ${HOME URL}info/privacy-policy
+  Wait Until Element Is Visible       css=.main
+  Page Should Contain Element         css=.main       Privacy Policy
+  Wait For Condition                  return document.querySelectorAll(".b-matte").length == 2
+
+Test Case Link Terms & Conditions On Footer
+  Scroll To Bottom Page
+  Wait Until Element Is Visible       sizzle=.tdd-terms-conditions
+  Click Element                       sizzle=.tdd-terms-conditions
+  Location Should Be                  ${HOME URL}info/terms-conditions
+  Wait Until Element Is Visible       css=.main
+  Page Should Contain Element         css=.main       Terms & Conditions
+  Wait For Condition                  return document.querySelectorAll(".b-matte").length == 4
+
+Test Case Link Follow Us FB On Footer
+  Scroll To Bottom Page
+  Wait Until Element Is Visible       sizzle=.footer-links ul:nth(4) li:nth(1) a:first
+  Click Element                       sizzle=.footer-links ul:nth(4) li:nth(1) a:first
+  Location Should Be                  https://www.facebook.com/karirdotcom
+  Go Back
+
+Test Case Link Follow Us Twitter On Footer
+  Scroll To Bottom Page
+  Wait Until Element Is Visible       sizzle=.footer-links ul:nth(4) li:nth(1) a:nth(1)
+  Click Element                       sizzle=.footer-links ul:nth(4) li:nth(1) a:nth(1)
+  Location Should Be                  https://twitter.com/karirdotcom
+  Go Back
+
+Test Case Link Follow Us Gplus On Footer
+  Scroll To Bottom Page
+  Wait Until Element Is Visible       sizzle=.socmed-links-last a
+  Click Element                       sizzle=.socmed-links-last a
+  Location Should Be                  https://plus.google.com/+karirdotcom
+  Go Back

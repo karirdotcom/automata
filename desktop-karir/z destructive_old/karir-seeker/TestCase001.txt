@@ -1,0 +1,18 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Login
+  Sleep       1
+  Wait Until Element Is Visible    sizzle=.b-nav__mode__link:nth(4)
+  Click Element                    sizzle=.b-nav__mode__link:nth(4)
+  Location Should Contain          ${HOME URL}
+  Input Text                       name=user[email]         ${VALID USER}
+  Input Password                   name=user[password]      ${VALID PASSWORD}
+  Click Button                     Masuk
+  sleep  0.5
+  Location Should Contain          ${HOME URL}
+  Sleep       5
+  Page Should Contain Element      css=.b-profile-card

@@ -1,0 +1,47 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Add Certifications
+  Login with seeker
+  Wait Until Element Is Visible         sizzle=\#certifications a:last
+  Click Element                         sizzle=\#certifications a:last
+  Input Text                            sizzle=.certification-edit li:first input[type=text]        Sertifikat RobotFramework
+  Click Element                         sizzle=.certification-edit li:nth(2) li:first
+  Click Element                         sizzle=.certification-edit li:nth(2) li:first option[value=2014]
+  Click Element                         sizzle=.certification-edit li:nth(2) li:nth(1)
+  Click Element                         sizzle=.certification-edit li:nth(2) li:nth(1) option[value=5]
+  Click Element                         sizzle=.certification-edit li:nth(2) li:nth(2)
+  Click Element                         sizzle=.certification-edit li:nth(2) li:nth(2) option[value=25]
+  Click Button                          Save
+  Page Should Not Contain Element       sizzle=.b-matte__content--edit
+  Page Should Contain Element           sizzle=\#certifications        Sertifikat RobotFramework
+  Logout
+
+Test Case Edit Certifications
+  Login with seeker
+  Wait Until Element Is Visible         sizzle=\#certifications .fa-pencil:first
+  Click Element                         sizzle=\#certifications .fa-pencil:first
+  Input Text                            sizzle=.certification-edit li:first input[type=text]        Sertifikat Workshop RobotFramework
+  Click Element                         sizzle=.certification-edit li:nth(2) li:first
+  Click Element                         sizzle=.certification-edit li:nth(2) li:first option[value=2014]
+  Click Element                         sizzle=.certification-edit li:nth(2) li:nth(1)
+  Click Element                         sizzle=.certification-edit li:nth(2) li:nth(1) option[value=5]
+  Click Element                         sizzle=.certification-edit li:nth(2) li:nth(2)
+  Click Element                         sizzle=.certification-edit li:nth(2) li:nth(2) option[value=25]
+  Click Button                          Save
+  Sleep       3
+  Page Should Not Contain Element       sizzle=.b-matte__content--edit
+  Page Should Contain Element           sizzle=\#certifications        Sertifikat Workshop RobotFramework
+  Logout
+
+Test Case Delete Certifications
+  Login with seeker
+  Wait Until Element Is Visible         sizzle=\#certifications .fa-pencil:first
+  Click Element                         sizzle=\#certifications .fa-pencil:first
+  Click Element                         sizzle=.certification-edit a
+  Page Should Not Contain Element       sizzle=.certification-edit
+  Page Should Not Contain Element       Sertifikat Workshop RobotFramework
+  Logout

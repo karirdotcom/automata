@@ -1,0 +1,204 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Salary Benchmark required
+  Mouse Over                          sizzle=.b-nav__mode__list .b-nav__mode__link:nth(2)
+  Wait Until Element Is Visible       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Click Element                       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Location Should Be                  ${HOME URL}salary
+  Click Link                          sizzle=.b-button.--blue
+  Login with seeker before take salary
+  Wait Until Element Is Visible       sizzle=.i-registration__overlay
+  Location Should Be                  ${HOME URL}salary/new
+  Wait Until Element Is Visible       css=.b-matte-rounded
+  Click Element                       commit
+  Reload Page
+  Click Element                       forms_salary[gender_id]
+  Click Element                       sizzle=.b-form__field option[value=2]
+  List Selection Should Be            sizzle=.b-form__field         Wanita
+  Click Element                       commit
+  Reload Page
+  Input Text                          forms_salary[address]         Jl. Asia Afrika No. 019
+  Click Element                       commit
+  Reload Page
+  Click Element                       forms_salary[degree_id]
+  Click Element                       sizzle=\#forms_salary_degree_id option[value=3]
+  List Selection Should Be            sizzle=\#forms_salary_degree_id    Sarjana/S1
+  Click Element                       commit
+  Reload Page
+  Click Element                       forms_salary[location_id]
+  Click Element                       sizzle=\#forms_salary_location_id option[value=10032]
+  List Selection Should Be            sizzle=\#forms_salary_location_id   Bogor
+  Click Element                       commit
+  Reload Page
+  Input Text                          forms_salary[phone]         085717099929
+  Click Element                       commit
+  Click Element                       forms_salary[experience_years_length]
+  Click Element                       sizzle=\#forms_salary_experience_years_length option[value=3]
+  List Selection Should Be            sizzle=\#forms_salary_experience_years_length    3
+  Click Element                       commit
+  Reload Page
+  Input Text                          forms_salary[job_function_name]        Internal Audit Executive
+  Click Element                       commit
+  Click Element                       forms_salary[job_level_id]
+  Click Element                       sizzle=\#forms_salary_job_level_id option[value=3]
+  List Selection Should Be            sizzle=\#forms_salary_job_level_id    Staf Senior
+  Click Element                       commit
+  Reload Page
+  Click Element                       forms_salary[job_category_id]
+  Click Element                       sizzle=\#forms_salary_job_category_id option[value=15]
+  List Selection Should Be            sizzle=\#forms_salary_job_category_id    Bank, Keuangan & Asuransi
+  Click Element                       commit
+  Click Element                       forms_salary[industry_id]
+  Click Element                       sizzle=\#forms_salary_industry_id option[value=11]
+  List Selection Should Be            sizzle=\#forms_salary_industry_id    Keuangan / Bank
+  Click Element                       commit
+  Click Element                       forms_salary[company_type_id]
+  Click Element                       sizzle=\#forms_salary_company_type_id option[value=1]
+  List Selection Should Be            sizzle=\#forms_salary_company_type_id    Lokal/Nasional
+  Click Element                       commit
+  Page Should Contain                 Tidak dapat menyimpan data Anda, mohon cek kembali inputan Anda
+  Input Text                          css=\#forms_salary_monthly_salary         6000000
+  Click Element                       sizzle=\#forms_salary_operation_type_2
+  Reload Page
+  Click Element                       sizzle=\#forms_salary_operation_type_1
+  Reload Page
+  Logout
+
+#setelah ngerjain sampe Gross Monthly Salary jangan d commit, ntar susah nyari user lagi
+
+Test Case Validation Salary Benchmark
+  Login with seeker
+  Mouse Over                          sizzle=.b-nav__mode__list .b-nav__mode__link:nth(2)
+  Wait Until Element Is Visible       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Click Element                       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Page Should Contain                 Lihat Hasil
+  Click Element                       sizzle=.--blue
+  Location Should Be                  ${HOME URL}salary/result
+  Wait Until Element Is Visible       sizzle=.b-salary__content-body--result--img
+  Sleep   1
+  Click Element                       id=\salary_update_profile
+  Location Should Contain             ${HOME URL}users/
+  Go Back
+  Wait Until Element Is Visible       id=\salary_search_jobs
+  Click Element                       id=\salary_search_jobs
+  Location Should Be                  ${HOME URL}search
+  Logout
+
+Test Case Button Share By Email
+  #destination email kosong
+  Login with seeker
+  Mouse Over                          sizzle=.b-nav__mode__list .b-nav__mode__link:nth(2)
+  Wait Until Element Is Visible       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Click Element                       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Page Should Contain                 Lihat Hasil
+  Click Element                       sizzle=.--blue
+  Location Should Be                  ${HOME URL}salary/result
+  Wait Until Element Is Visible       sizzle=.b-salary__content-body--result--img
+  Click Link                          css=.email-share-button
+  Wait Until Element Is Visible       css=\#invite-via-email
+  Execute Manual Step                 Solved Captcha Manually?
+  Click Button                        Kirim
+  Sleep       3
+  Page Should Contain                 Email tujuan kosong
+  Logout
+
+Test Case Subject Email Empty
+  Login with seeker
+  Mouse Over                          sizzle=.b-nav__mode__list .b-nav__mode__link:nth(2)
+  Wait Until Element Is Visible       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Click Element                       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Page Should Contain                 Lihat Hasil
+  Click Element                       sizzle=.--blue
+  Location Should Be                  ${HOME URL}salary/result
+  Wait Until Element Is Visible       sizzle=.b-salary__content-body--result--img
+  Click Link                          css=.email-share-button
+  Wait Until Element Is Visible       css=\#invite-via-email
+  Input Text                          sizzle=\#invite-via-email input[type=email]     qakmk14@yahoo.com
+  Clear Element Text                  sizzle=\#invite-via-email input[type=text]
+  Input Text                          sizzle=\#invite-via-email input[type=text]        HAPUS
+  #Hapus Manual
+  Execute Manual Step                 Solved Captcha Manually?
+  Click Button                        Kirim
+  Sleep     3
+  Page Should Contain                 Subjek tidak bisa kosong
+  Logout
+
+Test Case Message Email Empty
+  Login with seeker
+  Mouse Over                          sizzle=.b-nav__mode__list .b-nav__mode__link:nth(2)
+  Wait Until Element Is Visible       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Click Element                       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Page Should Contain                 Lihat Hasil
+  Click Element                       sizzle=.--blue
+  Location Should Be                  ${HOME URL}salary/result
+  Wait Until Element Is Visible       sizzle=.b-salary__content-body--result--img
+  Click Link                          css=.email-share-button
+  Wait Until Element Is Visible       css=\#invite-via-email
+  Input Text                          sizzle=\#invite-via-email input[type=email]     qakmk14@yahoo.com
+  Clear Element Text                  sizzle=\#invite-via-email textarea[data-field=message]
+  Input Text                          sizzle=\#invite-via-email textarea[data-field=message]    HAPUS
+  #Hapus Manual
+  Execute Manual Step                 Solved Captcha Manually?
+  Click Button                        Kirim
+  Sleep     3
+  Page Should Contain                 Pesan tidak bisa kosong
+  Logout
+
+Test Case Skip Captcha
+  Login with seeker
+  Mouse Over                          sizzle=.b-nav__mode__list .b-nav__mode__link:nth(2)
+  Wait Until Element Is Visible       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Click Element                       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Page Should Contain                 Lihat Hasil
+  Click Element                       sizzle=.--blue
+  Location Should Be                  ${HOME URL}salary/result
+  Wait Until Element Is Visible       sizzle=.b-salary__content-body--result--img
+  Click Link                          css=.email-share-button
+  Wait Until Element Is Visible       css=\#invite-via-email
+  Input Text                          sizzle=\#invite-via-email input[type=email]     qakmk14@yahoo.com
+  Click Button                        Kirim
+  Sleep     3
+  Page Should Contain                 Gagal verifikasi captcha
+  Logout
+
+Test Case Button Share By Facebook
+  Login with seeker
+  Mouse Over                          sizzle=.b-nav__mode__list .b-nav__mode__link:nth(2)
+  Wait Until Element Is Visible       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Click Element                       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Page Should Contain                 Lihat Hasil
+  Click Element                       sizzle=.--blue
+  Location Should Be                  ${HOME URL}salary/result
+  Wait Until Element Is Visible       css=.b-salary__content-body--result--img
+  Click Link                          css=.fb-share-button
+  Location Should Contain             https://www.facebook.com/login
+  Input Text                          email             qakarirbumi@yahoo.com
+  Input Text                          pass              qaBumi10:)
+  Click Element                       login
+  Location Should Contain             https://www.facebook.com/v2.3/dialog/
+  Page Should Contain Element         css=.unclickableMask
+  Sleep     1
+  Go Back
+  sleep     1
+  Confirm Action
+  Sleep     1
+  Go Back
+  Sleep     1
+  Location Should Be                  ${HOME URL}salary/result
+  Logout
+
+Test Case Button Share By Twitter
+  Login with seeker
+  Mouse Over                          sizzle=.b-nav__mode__list .b-nav__mode__link:nth(2)
+  Wait Until Element Is Visible       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Click Element                       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Page Should Contain                 Lihat Hasil
+  Click Element                       sizzle=.--blue
+  Location Should Be                  ${HOME URL}salary/result
+  Wait Until Element Is Visible       sizzle=.b-salary__content-body--result--img
+  Click Link                          css=.twitter-share-button
+  Location Should Contain             https://twitter.com/login

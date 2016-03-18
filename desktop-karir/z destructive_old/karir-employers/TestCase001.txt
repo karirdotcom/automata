@@ -1,0 +1,11 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Go To Employers Landing Page
+  Login with co member
+  Location Should Contain             ${HOME URL}companies/dashboard
+  Wait Until Element Is Visible       css=.opportunities
+  Logout

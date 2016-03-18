@@ -1,0 +1,21 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Selected Industries On Home Page
+  Scroll Bottom
+  Wait Until Element Is Visible    sizzle=.row .b-discovery-card--wide
+  Click Element                    sizzle=.b-discovery-card--wide a
+  Location Should Contain          ${SERVER}/search?industry_ids=52
+  Wait Until Element Is Visible    sizzle=.opportunities-list
+  Click Element           	       sizzle=.tdd-function-name:first
+  Location Should Contain          ${SERVER}/opportunities
+  Page Should Contain Element      sizzle=.company-profile .stats:last         Consumer Goods
+  Go Back
+
+*** Keywords ***
+Scroll Bottom
+  Execute Javascript               window.scrollTo(0, 1500);
+  Sleep                            1

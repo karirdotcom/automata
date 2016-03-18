@@ -1,0 +1,64 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Link MTacademy On Navbar
+  Mouse Over                                  sizzle=.b-nav__mode__link:nth(1)
+  Wait Until Element Is Visible               sizzle=.b-nav__mode__submenu__link:nth(0)
+  Click Element                               sizzle=.b-nav__mode__submenu__link:nth(0)
+  Location Should Contain                     ${HOME URL}mtacademy
+  Wait Until Element Is Visible               css=.b-registration__form__header
+  Page Should Contain                         MT Academy, sebuah persembahan Karir.com, mencari & mengembangkan bakat
+  Go Back
+
+Test Case Link Karir.com Expo On Navbar
+  Mouse Over                                  sizzle=.b-nav__mode__link:nth(1)
+  Wait Until Element Is Visible               sizzle=.b-nav__mode__submenu__link:nth(1)
+  Click Element                               sizzle=.b-nav__mode__submenu__link:nth(1)
+  Location Should Be                          http://expo.karir.com/
+  Wait Until Element Is Visible               css=.new_forms_registration
+  Page Should Contain  Element                sizzle=.b-header__header__title
+  Go Back
+
+Test Case Link Next Career On Navbar
+  Mouse Over                                  sizzle=.b-nav__mode__link:nth(1)
+  Wait Until Element Is Visible               sizzle=.b-nav__mode__submenu__link:nth(2)
+  Click Element                               sizzle=.b-nav__mode__submenu__link:nth(2)
+  Location Should Be                          http://next.karir.com/
+  Wait Until Element Is Visible               css=.b-registration__form__actions__button
+  Page Should Contain  Element                sizzle=.b-parallax__content__title
+  Go Back
+
+Test Case Link English Test On Navbar
+  Mouse Over                                  sizzle=.b-nav__mode__link:nth(2)
+  Wait Until Element Is Visible               sizzle=.b-nav__mode__submenu__link:nth(3)
+  Click Element                               sizzle=.b-nav__mode__submenu__link:nth(3)
+  Location Should Contain                     ${HOME URL}efset
+  Page Should Contain Element                 css=.b-efset
+  Page Should Contain                         Uji Kemampuan Bahasa Inggrismu!
+  Click Element                               css=.tdd-start-test
+  Location Should Contain                     ${HOME URL}users/sign_in
+  Go Back
+  Sleep   5
+
+Test Case Link Career Inspirations On Navbar
+  Mouse Over                                  sizzle=.b-nav__mode__link:nth(2)
+  Wait Until Element Is Visible               sizzle=.b-nav__mode__submenu__link:nth(4)
+  Click Element                               sizzle=.b-nav__mode__submenu__link:nth(4)
+  Location Should Be                          http://blog.karir.com/
+  Go Back
+
+Test Case Change Language On Navbar
+  Go To                                       ${HOME URL}
+  Mouse Over                                  sizzle=.b-nav__mode__link:nth(3)
+  Wait Until Element Is Visible               sizzle=.b-nav__mode__submenu__link:nth(7)
+  Click Element                               sizzle=.b-nav__mode__submenu__link:nth(7)
+  Page Should Contain                         Bekerja hari ini,
+  Mouse Over                                  sizzle=.b-nav__mode__link:nth(3)
+  Wait Until Element Is Visible               sizzle=.b-nav__mode__submenu__link:nth(6)
+  Click Element                               sizzle=.b-nav__mode__submenu__link:nth(6)
+  Sleep       5
+  Page Should Contain                         Job is one thing, but
+  Sleep       2

@@ -1,0 +1,27 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Search by Job Title On Homepage
+  Wait Until Element Is visible       sizzle=.b-search__input__q
+  Input Text                          q                   admin
+  Input Text                          location            Jakarta
+  Click Element                       sizzle=.b-search__input__submit
+  Location Should Contain             ${HOME URL}search?q=admin&location=Jakarta
+  Wait Until Element Is Visible       sizzle=.filters input[value=admin]
+  Page Should Contain Element         sizzle=.opportunities-list .b--inline span:contains("Jakarta")
+  Sleep       3
+  Go Back
+
+Test Case Search by Company On Homepage
+  Wait Until Element Is visible       sizzle=.b-search__input__q
+  Input Text                          q                   karir
+  Input Text                          location            Jakarta
+  Click Element                       sizzle=.b-search__input__submit
+  Location Should Contain             ${HOME URL}search?q=karir&location=Jakarta
+  Wait Until Element Is Visible       sizzle=.tdd-company-name
+  Page Should Contain Element         sizzle=.opportunities-list .b--inline span:contains("Jakarta")
+  Page Should Contain Element         sizzle=.opportunities-list h3:contains("karir")
+  Sleep       3

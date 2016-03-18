@@ -1,0 +1,17 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case EFSet
+  Login with seeker
+  Wait Until Element Is Visible       sizzle=.b-nav__mode__list:nth(2)
+  Mouse Over                          sizzle=.b-nav__mode__list:nth(2)
+  Click Element                       sizzle=.b-nav__mode__list:nth(2) .b-nav__mode__submenu__link:first
+  Location Should Be                  ${HOME URL}efset
+  Wait Until Element Is Visible       css=.b-matte-rounded
+  Page Should Contain Element         sizzle=.b-button.right
+  Click Element                       css=.tdd-start-test
+  Location Should Be                  ${HOME URL}efset/new
+  Sleep       5

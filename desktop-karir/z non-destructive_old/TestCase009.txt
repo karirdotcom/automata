@@ -1,0 +1,41 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case filter by Job Functions on Search Page
+  Go To                               ${HOME URL}search
+  Wait Until Element Is visible       sizzle=.opportunities-list
+  Click Element                       sizzle=.tdd-job-functions
+  Wait Until Element Is Visible       sizzle=.tdd-job-functions .filter-filter
+  Select Checkbox                     sizzle=.tdd-job-functions .filter-filter li:first input[value=1]
+  Sleep     2
+  Page Should Contain Element         sizzle=.opportunities-list .tdd-function-name         Admin
+  Click Button                        sizzle=.clear-filters
+  Sleep               1
+
+Test Case filter by Locations on Search Page
+  Go To                               ${HOME URL}search
+  Wait Until Element Is visible       sizzle=.opportunities-list
+  Click Element                       sizzle=.tdd-location
+  Wait Until Element Is Visible       sizzle=.tdd-location .filter-filter
+  Click Element                       sizzle=.tdd-location .filter-filter
+  Click Element                       sizzle=.filter-filter optgroup option[value=10028]
+  Sleep     2
+  Page Should Contain Element         sizzle=.opportunities-list .b--inline span:contains("Jakarta")
+  Click Button                        sizzle=.clear-filters
+  Sleep               1
+
+Test Case filter by Industries on Search Page
+  Go To                               ${HOME URL}search
+  Wait Until Element Is visible       sizzle=.opportunities-list
+  Click Element                       sizzle=.tdd-industries
+  Wait Until Element Is Visible       sizzle=.tdd-industries .filter-filter
+  Click Element                       sizzle=.tdd-industries .filter-filter input[value=6]
+  Sleep     2
+  Click Element           	          sizzle=.tdd-function-name:first
+  Location Should Contain             ${SERVER}/opportunities
+  Page Should Contain Element         sizzle=.company-profile .stats:last         Computer / IT
+  Go Back
+  Sleep               1

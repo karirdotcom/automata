@@ -1,0 +1,16 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Login
+  Sleep       3
+  Click Link                       css=a[href*=sign_in]
+  Location Should Be               ${HOME URL}users/sign_in
+  Input Text                       name=user[email]         ${VALID USER}
+  Input Password                   name=user[password]      ${VALID PASSWORD}
+  Click Button                     Masuk
+  sleep  0.5
+  Location Should Contain          ${SERVER}/
+  Page Should Contain Element      css=.tdd-signed-in-icon

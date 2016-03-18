@@ -1,0 +1,22 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case View Candidate Profile co non-membership
+  Login with co nonmember
+  Location Should Contain             ${HOME URL}companies/dashboard
+  Wait Until Element Is Visible       css=.opportunities
+  Click Link Search candidate
+  Click Element                       sizzle=.resumes-list .resume:nth(3) a:last
+  Sleep     3
+  Location Should Be                  ${HOME URL}
+  Wait Until Element Is Visible       sizzle=.i-registration__overlay
+
+
+*** Keywords ***
+Click Link Search candidate
+  Click Element                       sizzle=.b-nav__mode__link:first
+  Location Should Contain             ${HOME URL}search/resumes
+  Page Should Contain Element         sizzle=.resumes-list  figure a img

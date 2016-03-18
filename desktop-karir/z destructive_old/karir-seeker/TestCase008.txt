@@ -1,0 +1,42 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Add Language Proficiency
+  Login with seeker
+  Wait Until Element Is Visible         sizzle=\#language-proficiencies a:last
+  Click Element                         sizzle=\#language-proficiencies a:last
+  Input Text                            sizzle=.language-proficiency-edit li:first input[type=text]        Bahasa Indonesia
+  Click Element                         sizzle=.language-proficiency-edit li:nth(1)
+  Click Element                         sizzle=.language-proficiency-edit li:nth(1) option[value=1]
+  Click Element                         sizzle=.language-proficiency-edit li:nth(2)
+  Click Element                         sizzle=.language-proficiency-edit li:nth(2) option[value=2]
+  Click Button                          Save
+  Page Should Not Contain Element       sizzle=.b-matte__content--edit
+  Page Should Contain Element           sizzle=\#language-proficiencies         Bahasa Indonesia
+  Logout
+
+Test Case Edit Language Proficiency
+  Login with seeker
+  Wait Until Element Is Visible         sizzle=\#language-proficiencies .fa-pencil:first
+  Click Element                         sizzle=\#language-proficiencies .fa-pencil:first
+  Input Text                            sizzle=.language-proficiency-edit li:first input[type=text]        Bahasa Inggris
+  Click Element                         sizzle=.language-proficiency-edit li:nth(1)
+  Click Element                         sizzle=.language-proficiency-edit li:nth(1) option[value=2]
+  Click Element                         sizzle=.language-proficiency-edit li:nth(2)
+  Click Element                         sizzle=.language-proficiency-edit li:nth(2) option[value=1]
+  Click Button                          Save
+  Page Should Not Contain Element       sizzle=.b-matte__content--edit
+  Page Should Contain Element           sizzle=\#language-proficiencies         Bahasa Inggris
+  Logout
+
+Test Case Delete Language Proficiency
+  Login with seeker
+  Wait Until Element Is Visible         sizzle=\#language-proficiencies .fa-pencil:first
+  Click Element                         sizzle=\#language-proficiencies .fa-pencil:first
+  Click Element                         sizzle=.language-proficiency-edit a
+  Page Should Not Contain Element       sizzle=.b-matte__content--edit
+  Page Should Not Contain Element       Bahasa Inggris
+  Logout

@@ -1,0 +1,21 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Link Terms & Conditions
+  Login with seeker
+  Go To                               https://${SERVER}/salary/
+  Sleep     3
+  Wait Until Element Is Visible       sizzle=.bm-salary-info__content__link
+  Click Element                       sizzle=.bm-salary-info__content__link
+  Location Should Be                  https://${SERVER}/salary/terms_and_conditions
+  Sleep     3
+  Page Should Contain                 Syarat dan Ketentuan
+  Page Should Contain                 Syarat peserta
+  Page Should Contain                 Tata cara penentuan pemenang
+  Page Should Contain                 Data dan hak milik intelektual
+  Page Should Contain                 Jangka waktu berlangsungnya kontes
+  Page Should Contain                 Pajak hadiah ditanggung pemenang dan pemenang tidak bisa menentukan warna hadiah.
+  Page Should Contain                 Syarat dan ketentuan ini dapat diubah atau diperbaharui sewaktu-waktu tanpa adanya pemberitahuan.

@@ -1,0 +1,23 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../../resource.txt
+
+*** Test Case ***
+Test Case Success Invited By Email
+  Login with seeker
+  Mouse Over                          sizzle=.b-nav__mode__list .b-nav__mode__link:nth(2)
+  Wait Until Element Is Visible       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Click Element                       sizzle=.b-nav__mode__submenu__link:nth(5)
+  Page Should Contain                 Lihat Hasil
+  Click Element                       sizzle=.--blue
+  Location Should Be                  ${HOME URL}salary/result
+  Wait Until Element Is Visible       sizzle=.b-salary__content-body--result--img
+  Click Link                          css=.email-share-button
+  Wait Until Element Is Visible       css=\#invite-via-email
+  Input Text                          sizzle=\#invite-via-email input[type=email]     qakmk14@yahoo.com
+  Execute Manual Step                 Solved Captcha Manually?
+  Click Button                        Kirim
+  Sleep     3
+  Element Text Should Be              css=.notice         Terima Kasih, Anda telah berhasil mengajak orang
+  Logout

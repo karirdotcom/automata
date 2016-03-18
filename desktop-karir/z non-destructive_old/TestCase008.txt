@@ -1,0 +1,15 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Sort by Newest on Search Page
+  Go To                               ${HOME URL}search
+  Wait Until Element Is visible       sizzle=.opportunities-list
+  Select Radio Button                 sort_order          newest
+  Wait Until Element Is Visible       sizzle=.tdd-company-name
+  Page Should Contain Element         sizzle=.opportunities-list .b--inline span:contains("Jakarta")
+  Sleep       5
+  Page Should Contain Element         sizzle=.opportunities-list .opportunity time:contains("Januari 2016")
+  Sleep               10

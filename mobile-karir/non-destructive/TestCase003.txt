@@ -1,0 +1,111 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Shared By Email With Empty Recipient
+  Login with seeker
+  Go To                               https://${SERVER}/salary/result
+  Wait Until Element Is Visible       css=.bm-salary-result__image
+  Scroll To Bottom Page
+  Wait Until Element Is Visible       sizzle=.bm-salary-socmed__button .email-share-button img
+  Click Element                       sizzle=.bm-salary-socmed__button .email-share-button
+  Location Should Be                  https://${SERVER}/salary/invitation
+  Input Text                          forms_salary_invitation[sender_name]      qa Hotmail
+  Execute Manual Step                 Solved Captcha Manually?
+  Click Element                       commit
+  Wait Until Element Is Visible       sizzle=.field_with_errors:last
+  Click Element                       css=.bm-edit-nav__list-items__cancel
+  Location Should Be                  https://${SERVER}/salary/result
+  Wait Until Element Is Visible       css=.bm-salary-result__image
+  Logout
+
+Test Shared By Email With Empty Subject
+  Login with seeker
+  Go To                               https://${SERVER}/salary/result
+  Wait Until Element Is Visible       css=.bm-salary-result__image
+  Scroll To Bottom Page
+  Wait Until Element Is Visible       sizzle=.bm-salary-socmed__button .email-share-button img
+  Click Element                       sizzle=.bm-salary-socmed__button .email-share-button
+  Location Should Be                  https://${SERVER}/salary/invitation
+  Input Text                          forms_salary_invitation[destination_email]    qakmk14@yahoo.com
+  Input Text                          forms_salary_invitation[sender_name]          qa Hotmail
+  Clear Element Text                  forms_salary_invitation[subject]
+  Execute Manual Step                 Solved Captcha Manually?
+  Click Element                       commit
+  Wait Until Element Is Visible       sizzle=.field_with_errors:last
+  Click Element                       css=.bm-edit-nav__list-items__cancel
+  Location Should Be                  https://${SERVER}/salary/result
+  Wait Until Element Is Visible       css=.bm-salary-result__image
+  Logout
+
+Test Shared By Email With Empty Message
+  Login with seeker
+  Go To                               https://${SERVER}/salary/result
+  Wait Until Element Is Visible       css=.bm-salary-result__image
+  Scroll To Bottom Page
+  Wait Until Element Is Visible       sizzle=.bm-salary-socmed__button .email-share-button img
+  Click Element                       sizzle=.bm-salary-socmed__button .email-share-button
+  Location Should Be                  https://${SERVER}/salary/invitation
+  Input Text                          forms_salary_invitation[destination_email]    qakmk14@yahoo.com
+  Input Text                          forms_salary_invitation[sender_name]          qa Hotmail
+  Clear Element Text                  forms_salary_invitation[message]
+  Execute Manual Step                 Solved Captcha Manually?
+  Click Element                       id=\js-edit-nav__save
+  Wait Until Element Is Visible       sizzle=.field_with_errors:last
+  Click Element                       css=.bm-edit-nav__list-items__cancel
+  Location Should Be                  https://${SERVER}/salary/result
+  Wait Until Element Is Visible       css=.bm-salary-result__image
+  Logout
+
+Test Button Cancel
+  Login with seeker
+  Go To                               https://${SERVER}/salary/result
+  Wait Until Element Is Visible       css=.bm-salary-result__image
+  Scroll To Bottom Page
+  Wait Until Element Is Visible       sizzle=.bm-salary-socmed__button .email-share-button img
+  Click Element                       sizzle=.bm-salary-socmed__button .email-share-button
+  Location Should Be                  https://${SERVER}/salary/invitation
+  Click Element                       css=.bm-edit-nav__list-items__cancel
+  Location Should Be                  https://${SERVER}/salary/result
+  Wait Until Element Is Visible       css=.bm-salary-result__image
+  Scroll To Bottom Page
+  Wait Until Element Is Visible       sizzle=.bm-salary-socmed__button .email-share-button img
+  Click Element                       sizzle=.bm-salary-socmed__button .email-share-button
+  Location Should Be                  https://${SERVER}/salary/invitation
+  Click Element                       css=.bm-form__cancel-button
+  Location Should Be                  https://${SERVER}/salary/result
+  Wait Until Element Is Visible       css=.bm-salary-result__image
+  Logout
+
+Test Share By Facebook
+  Login with seeker
+  Go To                               https://${SERVER}/salary/result
+  Wait Until Element Is Visible       css=.bm-salary-result__image
+  Scroll To Bottom Page
+  Wait Until Element Is Visible       sizzle=.bm-salary-socmed__button .fb-share-button img
+  Click Element                       sizzle=.bm-salary-socmed__button .fb-share-button img
+  Wait Until Element Is Visible       email
+  Input Text                          email             qanyakmk@gmail.com
+  Input Password                      pass              qasenayan14
+  Click Element                       login
+  Location Should Contain             https://www.facebook.com/sharer/
+  Click Button                        Cancel
+  Click Button                        Cancel
+  Location Should Be                  https://${SERVER}/salary/result
+  Logout
+
+Test Share By Twitter
+  Login with seeker
+  Go To                               https://${SERVER}/salary/result
+  Wait Until Element Is Visible       css=.bm-salary-result__image
+  Scroll To Bottom Page
+  Wait Until Element Is Visible       sizzle=.bm-salary-socmed__button .twitter-share-button img
+  Click Element                       sizzle=.bm-salary-socmed__button .twitter-share-button img
+  Page Should Contain                 Yakin gajimu udah pas? Cek di sini, plus kesempatan menangin 1 unit Vespa S https://m.karir.com/salary #SalaryBenchmark by @karirdotcom
+  Wait Until Element Is Visible       session[username_or_email]
+  Input Text                          session[username_or_email]     cek_qa
+  Input Password                      session[password]              it123456789
+  Click Element                       css=.submit
+  Wait Until Element Is Visible       css=.action-information

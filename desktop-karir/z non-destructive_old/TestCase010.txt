@@ -1,0 +1,28 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Sort and Filter on Search Page
+  Go To                               ${HOME URL}search
+  Wait Until Element Is visible       sizzle=.opportunities-list
+  Click Element                       sizzle=.tdd-job-functions
+  Wait Until Element Is Visible       sizzle=.tdd-job-functions .filter-filter
+  Click Element                       sizzle=.tdd-job-functions .filter-filter li:first input[value=1]
+  Click Element                       sizzle=.tdd-job-functions .filter-sign
+  Click Element                       sizzle=.tdd-location
+  Wait Until Element Is Visible       sizzle=.tdd-location .filter-filter
+  Click Element                       sizzle=.tdd-location .filter-filter
+  Click Element                       sizzle=.filter-filter optgroup option[value=10028]
+  Click Element                       sizzle=.tdd-location .filter-sign
+  Click Element                       sizzle=.tdd-industries
+  Wait Until Element Is Visible       sizzle=.tdd-industries .filter-filter
+  Click Element                       sizzle=.tdd-industries .filter-filter li:nth(8)
+  Click Element                       sizzle=.tdd-industries .filter-sign
+  Page Should Contain Element         sizzle=.opportunities-list .tdd-function-name         Admin
+  Page Should Contain Element         sizzle=.opportunities-list .b--inline span:contains("Jakarta")
+  Click Element           	          sizzle=.tdd-function-name:first
+  Location Should Contain             ${SERVER}/opportunities
+  Page Should Contain Element         sizzle=.company-profile .stats:last         Agribusiness
+  Go Back

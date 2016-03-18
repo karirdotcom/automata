@@ -1,0 +1,60 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Add Education
+  Login with seeker
+  Wait Until Element Is Visible         sizzle=.b-matte__footer:nth(2) a
+  Click Element                         sizzle=.b-matte__footer:nth(2) a
+  Wait Until Element Is Visible         sizzle=.b-matte__content--edit
+  Click Element                         sizzle=.education-edit
+  Click Element                         sizzle=.education-edit li:first option[value=4]
+  Click Element                         sizzle=.education-edit li:nth(1)
+  Click Element                         sizzle=.education-edit li:nth(1) option[value=17]
+  Input Text                            sizzle=.education-edit li:nth(2) input[type=text]        KMK University
+  Click Element                         sizzle=.education-edit .select-year
+  Click Element                         sizzle=.education-edit .select-year option[value=2015]
+  Click Element                         sizzle=.education-edit .checkbox
+  Unselect Checkbox                     sizzle=.education-edit .checkbox input[type=checkbox]
+  Input Text                            sizzle=.education-edit li:nth(8) input[type=text]         3.00
+  Click Button                          Save
+  Sleep     1
+  Page Should Not Contain Element       sizzle=.b-matte__content--edit
+  Page Should Contain Element           id=education          KMK University
+  Logout
+
+Test Case Edit Education
+  Login with seeker
+  Wait Until Element Is Visible         sizzle=.education-show .fa-pencil:first
+  Click Element                         sizzle=.education-show .fa-pencil:first
+  Wait Until Element Is Visible         sizzle=.b-matte__content--edit
+  Click Element                         sizzle=.education-edit li:first
+  Click Element                         sizzle=.education-edit li:first option[value=3]
+  Click Element                         sizzle=.education-edit li:nth(1)
+  Click Element                         sizzle=.education-edit li:nth(1) option[value=17]
+  Input Text                            sizzle=.education-edit li:nth(2) input[type=text]        KMK Dua University
+  Click Element                         sizzle=.education-edit .select-year
+  Click Element                         sizzle=.education-edit .select-year option[value=2012]
+  Click Element                         sizzle=.education-edit .checkbox
+  Unselect Checkbox                     sizzle=.education-edit .checkbox input[type=checkbox]
+  Wait Until Element Is Visible         sizzle=.education-edit .end-year
+  Click Element                         sizzle=.education-edit .end-year option[value=2015]
+  Input Text                            sizzle=.education-edit li:nth(8) input[type=text]         3.00
+  Click Button                          Save
+  Sleep     1
+  Page Should Not Contain Element       sizzle=.b-matte__content--edit
+  Page Should Contain Element           id=education           KMK Dua University
+  Logout
+
+Test Case Delete Education
+  Login with seeker
+  Wait Until Element Is Visible         sizzle=.education-show .fa-pencil:first
+  Click Element                         sizzle=.education-show .fa-pencil:first
+  Wait Until Element Is Visible         sizzle=.b-matte__content--edit
+  Click Element                         sizzle=.education-edit a
+  Sleep     1
+  Page Should Not Contain Element       sizzle=.b-matte__content--edit
+  Page Should Not Contain Element       KMK Dua University
+  Logout

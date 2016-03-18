@@ -1,0 +1,50 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Search By Keywords On Seeker Search Page
+  Wait Until Element Is Visible    sizzle=.b-nav__mode__link:first
+  Click Element                    sizzle=.b-nav__mode__link:first
+  Location Should Contain          ${SERVER}/search
+  Wait Until Element Is Visible    sizzle=.filters
+  Page Should Contain Element      sizzle=.opportunities-list figure a img
+  Input Text                       q              karir.com
+  Page Should Contain Element      sizzle=.tdd-function-name        Admin
+  Click Button                     sizzle=.clear-filters
+
+Test Case Sort By Newest and Highest Salary On Seeker Search Page
+  Wait Until Element Is Visible    sizzle=.filters
+  Page Should Contain Element      sizzle=.opportunities-list figure a img
+  Page Should Contain Element      sizzle=.opportunities-list .opportunity time       2015
+  Select Radio Button              sort_order     highest_salary
+  Page Should Contain Element      sizzle=.opportunities-list .tdd-salary       Anything
+  Click Button                     sizzle=.clear-filters
+
+Test Case Filter By Job Functions On Seeker Search Page
+  Wait Until Element Is Visible    sizzle=.filters
+  Page Should Contain Element      sizzle=.opportunities-list figure a img
+  Click Element                    sizzle=.tdd-job-functions
+  Select Checkbox                  sizzle=.tdd-job-functions .filter-filter input[value=1]
+  Page Should Contain Element      sizzle=.opportunities-list .tdd-function-name       Admin
+  Click Button                     sizzle=.clear-filters
+
+Test Case Filter By Locations On Seeker Search Page
+  Wait Until Element Is Visible    sizzle=.filters
+  Page Should Contain Element      sizzle=.opportunities-list figure a img
+  Click Element                    sizzle=.tdd-location
+  Click Element                    sizzle=.tdd-location .filter-filter option[value=10028]
+  Page Should Contain Element      sizzle=.opportunities-list .b--inline span       Jakarta
+  Click Button                     sizzle=.clear-filters
+
+Test Case Filter By Industries On Seeker Search Page
+  Wait Until Element Is Visible    sizzle=.filters
+  Page Should Contain Element      sizzle=.opportunities-list figure a img
+  Click Element                    sizzle=.tdd-industries
+  Click Element                    sizzle=.tdd-industries .filter-filter input[value=58]
+  Click Element                    sizzle=.opportunity .tdd-function-name:first
+  Location Should Contain          ${SERVER}/opportunities/
+  Page Should Contain Element      sizzle=.stats:last span            Agribusiness
+  Go Back
+  Click Button                     sizzle=.clear-filters

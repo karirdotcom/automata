@@ -1,0 +1,28 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Search By All On Seeker Search Page
+  Wait Until Element Is Visible    sizzle=.b-nav__mode__link:first
+  Click Element                    sizzle=.b-nav__mode__link:first
+  Location Should Contain          ${SERVER}/search
+  Wait Until Element Is Visible    sizzle=.filters
+  Page Should Contain Element      sizzle=.opportunities-list figure a img
+  Select Radio Button              sort_order     highest_salary
+  Click Element                    sizzle=.tdd-job-functions
+  Select Checkbox                  sizzle=.tdd-job-functions .filter-filter input[value=31]
+  Click Element                    sizzle=.tdd-location
+  Click Element                    sizzle=.tdd-location .filter-filter option[value=10028]
+  Click Element                    sizzle=.tdd-industries
+  Click Element                    sizzle=.tdd-industries .filter-filter input[value=6]
+  Sleep         5
+  Page Should Contain Element      sizzle=.tdd-function-name                        Admin
+  Page Should Contain Element      sizzle=.opportunities-list .tdd-salary           Software
+  Page Should Contain Element      sizzle=.opportunities-list .b--inline span       Jakarta
+  Click Element                    sizzle=.opportunity .tdd-function-name:first
+  Location Should Contain          ${SERVER}/opportunities/
+  Page Should Contain Element      sizzle=.stats:last span                          Computer / IT
+  Go Back
+  Click Button                     sizzle=.clear-filters

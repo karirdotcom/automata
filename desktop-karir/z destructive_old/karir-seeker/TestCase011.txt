@@ -1,0 +1,13 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Button Export Page To PDF
+  Login with seeker
+  Wait Until Element Is Visible       sizzle=.b-profile-card
+  Click Element                       sizzle=\#tdd-export-to-pdf a
+  Go Back
+
+  #pdf otomatis terdownload

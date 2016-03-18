@@ -1,0 +1,24 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Recomended Job By Company Logo On Home Page
+  Wait Until Element Is Visible    sizzle=.row:first
+  Click Link                       sizzle=.b-company-card__logo:first a
+  Location Should Contain          ${SERVER}/companies/
+  Wait Until Element Is Visible    sizzle=.b-profile-card
+  Page Should Contain              About the Company
+  Page Should Contain              Job Openings
+  Go Back
+
+Test Case Recomended Job By Company Name On Home Page
+  Wait Until Element Is Visible    sizzle=.b-company-card__description:first
+  Sleep     3
+  Click Link                       sizzle=.b-company-card__description_company:first
+  Location Should Contain          ${SERVER}/companies/
+  Wait Until Element Is Visible    sizzle=.b-profile-card
+  Page Should Contain              About the Company
+  Page Should Contain              Job Openings
+  Go Back

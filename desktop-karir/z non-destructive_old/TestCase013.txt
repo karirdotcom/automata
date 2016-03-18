@@ -1,0 +1,21 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Button Change Language To Indonesian
+  Scroll To Bottom Page
+  Wait Until element Is Visible       css=.locale-links
+  Click Element                       css=.tdd-indonesian-language
+  Page Should Contain                 Dengan melakukan registrasi, saya setuju terhadap
+  Page Should Contain                 Beriklan dengan Kami
+  Sleep       3
+
+Test Case Button Change Language To English
+  Scroll To Bottom Page
+  Wait Until element Is Visible       css=.locale-links
+  Click Element                       css=.tdd-english-language
+  Page Should Contain                 By signing up, I agree to karir's
+  Page Should Contain                 Advertise with Us
+  Sleep       3

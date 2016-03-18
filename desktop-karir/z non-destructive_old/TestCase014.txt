@@ -1,0 +1,13 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Button Change Change Device
+  Scroll To Bottom Page
+  Wait Until element Is Visible       sizzle=.device-links .icon-Mobile
+  Click Element                       sizzle=.device-links .icon-Mobile
+  Location Should Contain             m.${SERVER}
+  Wait Until Element Is Visible       css=.i-welcome-banner__bg
+  Sleep       3

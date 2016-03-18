@@ -1,0 +1,11 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case SiteMap
+  Go To                             ${HOME URL}sitemap.xml
+  Wait Until Element Is Visible     css=.collapsible-content
+  Element Should Be Visible         css=.collapsible
+  Sleep       3

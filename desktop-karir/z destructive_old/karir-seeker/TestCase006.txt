@@ -1,0 +1,72 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Add Work Experince
+  Login with seeker
+  Wait Until Element Is Visible         sizzle=.b-matte__footer:first a
+  Click Element                         sizzle=.b-matte__footer:first a
+  Click Element                         sizzle=.work-experience-edit
+  Click Element                         sizzle=.work-experience-edit li:first option[value=1]
+  Click Element                         sizzle=.work-experience-edit li:nth(1)
+  Click Element                         sizzle=.work-experience-edit li:nth(1) option[value=3]
+  Click Element                         sizzle=.work-experience-edit li:nth(2)
+  Click Element                         sizzle=.work-experience-edit li:nth(2) option[value=6]
+  Click Element                         sizzle=.work-experience-edit li:nth(3)
+  Click Element                         sizzle=.work-experience-edit li:nth(3) option[value=5]
+  Click Element                         sizzle=.work-experience-edit li:nth(4)
+  Click Element                         sizzle=.work-experience-edit li:nth(4) option[value=6]
+  Input Text                            sizzle=.work-experience-edit li:nth(5) input[type=text]        PT. Kreatif Media Karya Online (KMK Online)
+  Input Text                            sizzle=.work-experience-edit li:nth(6) input[type=text]        Quality Assurance (QA)
+  Click Element                         sizzle=.work-experience-edit .start-date li:first
+  Click Element                         sizzle=.work-experience-edit .start-date li:first option[value=2012]
+  Click Element                         sizzle=.work-experience-edit .start-date li:nth(1)
+  Click Element                         sizzle=.work-experience-edit .start-date li:nth(1) option[value=2]
+  Click Element                         sizzle=.work-experience-edit .start-date li:nth(2)
+  Click Element                         sizzle=.work-experience-edit .start-date li:nth(2) option[value=1]
+  Unselect Checkbox                     sizzle=.work-experience-edit .checkbox input[type=checkbox]
+  Click Element                         sizzle=.work-experience-edit .end-date li:first
+  Click Element                         sizzle=.work-experience-edit .end-date li:first option[value=2015]
+  Click Element                         sizzle=.work-experience-edit .end-date li:nth(1)
+  Click Element                         sizzle=.work-experience-edit .end-date li:nth(1) option[value=2]
+  Click Element                         sizzle=.work-experience-edit .end-date li:nth(2)
+  Click Element                         sizzle=.work-experience-edit .end-date li:nth(2) option[value=1]
+  Click Button                          Save
+  Page Should Not Contain Element       sizzle=.b-matte__content--edit
+  Page Should Contain Element           id=work-experiences           PT. Kreatif Media Karya Online (KMK Online)
+  Logout
+
+Test Case Edit Work Experince
+  Login with seeker
+  Wait Until Element Is Visible         sizzle=.work-experience-show .fa-pencil:first
+  Click Element                         sizzle=.work-experience-show .fa-pencil:first
+  Click Element                         sizzle=.work-experience-edit
+  Click Element                         sizzle=.work-experience-edit li:first option[value=2]
+  Click Element                         sizzle=.work-experience-edit li:nth(1)
+  Click Element                         sizzle=.work-experience-edit li:nth(1) option[value=2]
+  Click Element                         sizzle=.work-experience-edit li:nth(2)
+  Click Element                         sizzle=.work-experience-edit li:nth(2) option[value=5]
+  Click Element                         sizzle=.work-experience-edit li:nth(3)
+  Click Element                         sizzle=.work-experience-edit li:nth(3) option[value=6]
+  Click Element                         sizzle=.work-experience-edit li:nth(4)
+  Click Element                         sizzle=.work-experience-edit li:nth(4) option[value=7]
+  Input Text                            sizzle=.work-experience-edit li:nth(5) input[type=text]        PT. KMK Online
+  Input Text                            sizzle=.work-experience-edit li:nth(6) input[type=text]        QA
+  Select Checkbox                       sizzle=.work-experience-edit .checkbox input[type=checkbox]
+  Click Button                          Save
+  Sleep     3
+  Page Should Not Contain Element       sizzle=.b-matte__content--edit
+  Page Should Contain Element           id=work-experiences         PT. KMK Online
+  Logout
+
+Test Case Delete Work Experince
+  Login with seeker
+  Wait Until Element Is Visible         sizzle=.work-experience-show .fa-pencil:first
+  Click Element                         sizzle=.work-experience-show .fa-pencil:first
+  Click Element                         sizzle=.work-experience-edit a
+  Sleep     3
+  Page Should Not Contain Element       sizzle=.b-matte__content--edit
+  Page Should Not Contain Element       PT. KMK Online
+  Logout

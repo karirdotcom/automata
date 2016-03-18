@@ -1,0 +1,277 @@
+{
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1024,
+      "height": 768
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "Styleguide - HomePage",
+      "url": "http://staging.karir.com",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - SearchPage",
+      "url": "http://www.staging.karir.com/search",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - OpportunitiesPage",
+      "url": "http://www.staging.karir.com/opportunities/1000008",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - companiesPage",
+      "url": "http://www.staging.karir.com/companies/40240",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - employerslandingPage",
+      "url": "http://www.staging.karir.com/employers",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - forgotPasswordPage",
+      "url": "http://www.staging.karir.com/users/password/new",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - loginPage",
+      "url": "http://www.staging.karir.com/users/sign_in",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - registerPage",
+      "url": "http://www.staging.karir.com/users/sign_up",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - seekerFAQPage",
+      "url": "http://www.staging.karir.com/info/faq-seeker",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - employerFAQPage",
+      "url": "http://www.staging.karir.com/info/faq-employer",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - advertisePage",
+      "url": "http://www.staging.karir.com/info/advertise",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - contactPage",
+      "url": "http://www.staging.karir.com/info/contact-us",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - registerPage",
+      "url": "http://www.staging.karir.com/users/sign_up",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - privacyPolicyPage",
+      "url": "http://www.staging.karir.com/info/privacy-policy",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - termsConditionsPage",
+      "url": "http://www.staging.karir.com/info/terms-conditions",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - mobileHomePage",
+      "url": "http://m.staging.karir.com/",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - mobileSearchPage",
+      "url": "http://m.staging.karir.com/search?",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - opportunitiesPage",
+      "url": "http://m.staging.karir.com/opportunities/1000008",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - errorPage",
+      "url": "http://staging.karir.com/styleguide/global",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "#tad-404",
+        "#tad-500",
+        "#tad-footer"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - EnglishTestPage",
+      "url": "http://staging.karir.com/efset",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - mtAcademyPage",
+      "url": "http://staging.karir.com/mtacademy",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    },
+    {
+      "label": "Styleguide - ExpoPage",
+      "url": "http://expo.karir.com/",
+      "hideSelectors": [],
+      "removeSelectors": [],
+      "selectors": [
+        "body"
+      ],
+      "readyEvent": null,
+      "delay": 500,
+      "misMatchThreshold" : 1.0
+    }
+  ]
+}

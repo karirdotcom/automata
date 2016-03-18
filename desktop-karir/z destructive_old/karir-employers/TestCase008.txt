@@ -1,0 +1,18 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Button Export Page To PDF
+  Login with co nonmember
+  Page Should Contain Element         sizzle=#opportunity_1000004 .b-opportunity-from-employer__applicants__count a:last     Applicants
+  Click Element                       sizzle=#opportunity_1000004 .b-opportunity-from-employer__applicants__count a:first
+  Wait Until Element Is Visible       sizzle=.resumes-list
+  Click Element                       sizzle=.resumes-list .resume:nth(1) a:last
+  Wait Until Element Is Visible       sizzle=.b-profile-card
+  Click Element                       sizzle=\#tdd-export-to-pdf a
+  Sleep       3
+  Go Back
+
+  #pdf otomatis terdownload

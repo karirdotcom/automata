@@ -1,0 +1,38 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Add Skill
+  Login with seeker
+  Wait Until Element Is Visible         sizzle=\#skills a:last
+  Click Element                         sizzle=\#skills a:last
+  Click Element                         sizzle=.skill-edit li:first
+  Click Element                         sizzle=.skill-edit li option[value=1]
+  Input Text                            sizzle=.skill-edit li:nth(1) input[type=text]        Automatic test Using Robot Framework
+  Click Button                          Save
+  Page Should Not Contain Element       sizzle=.b-matte__content--edit
+  Page Should Contain Element           sizzle=\#skills         Automatic test Using Robot Framework
+  Logout
+
+Test Case Edit Skill
+  Login with seeker
+  Wait Until Element Is Visible         sizzle=\#skills .fa-pencil:first
+  Click Element                         sizzle=\#skills .fa-pencil:first
+  Click Element                         sizzle=.skill-edit li:first
+  Click Element                         sizzle=.skill-edit li option[value=2]
+  Input Text                            sizzle=.skill-edit li:nth(1) input[type=text]        Functional Test & Automatic test Using Robot Framework
+  Click Button                          Save
+  Page Should Not Contain Element       sizzle=.b-matte__content--edit
+  Page Should Contain Element           sizzle=\#skills         Functional Test & Automatic test Using Robot Framework
+  Logout
+
+Test Case Delete Skill
+  Login with seeker
+  Wait Until Element Is Visible         sizzle=\#skills .fa-pencil:first
+  Click Element                         sizzle=\#skills .fa-pencil:first
+  Click Element                         sizzle=.skill-edit a
+  Page Should Not Contain Element       sizzle=.b-matte__content--edit
+  Page Should Not Contain Element       Functional Test & Automatic test Using Robot Framework
+  Logout

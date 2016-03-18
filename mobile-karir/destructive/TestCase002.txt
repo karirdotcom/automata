@@ -1,0 +1,28 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Case Apply Opportunities
+  Login with seeker with no complete resume
+  Page Should Contain Element           sizzle=.bm-user-stat li:nth(5) .bm-user-stat__title         qakmk14@yahoo.com
+  Click Element                         css=.bm-nav__logo
+  Location Should Be                    ${HOME URL}
+  Click Element                         sizzle=.bm-welcome-banner__search input[value=Search]
+  Location Should Contain               /search?q=&location=
+  Click Element                         sizzle=.tdd-function-name:first
+  Page Should Contain Element           sizzle=.bm-opportunity-profile__title a
+  Click Element                         sizzle=.signed-in-apply:first
+  Page Should Contain Element           sizzle=.modal h3          Resume Incomplete
+  Click Element                         sizzle=.tdd-resume
+  Location Should Contain               /users/
+  Go Back
+  Sleep     3
+  Location Should Contain               ${HOME URL}opportunities/
+  Sleep   3
+  Click Element                         sizzle=.signed-in-apply:last
+  Page Should Contain Element           sizzle=.modal h3          Resume Incomplete
+  Click Element                         css=.tdd-cancel
+  Logout
+  Sleep     5

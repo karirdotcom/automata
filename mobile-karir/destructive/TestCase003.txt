@@ -1,0 +1,21 @@
+*** Setting ***
+Suite Setup           Open Browser      ${HOME URL}       ${BROWSER}
+Suite Teardown        Close Browser
+Resource              ../resource.txt
+
+*** Test Case ***
+Test Success Shared Salary By Email
+  Login with seeker
+  Go To                               https://${SERVER}/salary/result
+  Wait Until Element Is Visible       css=.bm-salary-result__image
+  Scroll To Bottom Page
+  Wait Until Element Is Visible       sizzle=.bm-salary-socmed__button .email-share-button img
+  Click Element                       sizzle=.bm-salary-socmed__button .email-share-button
+  Location Should Be                  https://${SERVER}/salary/invitation
+  Input Text                          forms_salary_invitation[destination_email]    qakmk14@yahoo.com
+  Input Text                          forms_salary_invitation[sender_name]          qa Hotmail
+  Execute Manual Step                 Solved Captcha Manually?
+  Click Element                       commit
+  Location Should Be                  https://${SERVER}/salary/result
+  Wait Until Element Is Visible       css=.bm-salary-result__image
+  Logout
