@@ -23,10 +23,10 @@ Test redesign hompage popular job
 Test redesign hompage side bar popular industry
   Wait Until Element Is Visible               jquery=.b-matte-rounded__content:nth(1)
   Click Element                               jquery=.b-matte-rounded__content:nth(1) li:first a
-  Location Should Contain                     ${HOME URL}search?industry_ids=4
+  Location Should Contain                     ${HOME URL}search?industry_ids=43
   Wait Until Element Is Visible               jquery=.filters
-  Checkbox Should Be Selected                 jquery=.tdd-industries li input[value=4]
-  Go Back 
+  Checkbox Should Be Selected                 jquery=.tdd-industries li input[value=43]
+  Go Back
 
 Test redesign homepage side bar popular cities
   Wait Until Element Is Visible               jquery=.b-matte-rounded__content:nth(2)
